@@ -27,11 +27,7 @@ const articlesSchema = new Schema(
       year: {
         type: String,
         required: true,
-      },
-      isAnnounce: {
-        type: Boolean,
-        required: false,
-      },
+      }
     },
     marks: {
       type: Number,

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { articlePost } from "../../store/actions/articleAction";
+import ReactQuill from "react-quill"; 
+import "react-quill/dist/quill.snow.css"; 
 
 const SubmitArticle = () => {
   const [state, setState] = useState({
@@ -38,6 +40,10 @@ const SubmitArticle = () => {
 
   const changeHandler = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });
+  };
+
+  const handleChange = (value) => {
+    setState({ ...state, article: value });
   };
 
   const onSubmit = (e) => {
@@ -92,12 +98,11 @@ const SubmitArticle = () => {
           </label>
         </div>
         <div className="mt-5">
-          <textarea
-            className="appearance-none block w-full h-48 bg-gray-200 text-gray-700 border border-gray-200 rounded py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            placeholder="Enter your article"
-            name="article"
-            onChange={changeHandler}
+          <ReactQuill
             value={state.article}
+            onChange={handleChange}
+            className="appearance-none block font-bold bg-gray-200 text-gray-700 border border-gray-200 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            placeholder="Enter your article"
           />
         </div>
         <div className="mt-5 ">
