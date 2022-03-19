@@ -33,14 +33,6 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    isPayment: {
-      type: Boolean,
-      default: false,
-    },
-    submissionCount: {
-      type: Number,
-      default: 3,
-    },
   },
   {
     timestamps: true,

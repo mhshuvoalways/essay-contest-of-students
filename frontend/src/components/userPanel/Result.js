@@ -16,6 +16,10 @@ const Result = () => {
           <p>Marks:</p>
           <p>92</p>
         </div>
+        <div className="flex items-center md:gap-32 gap-5 py-5 border-pink-800 border-b">
+          <p>Grade:</p>
+          <p>Second</p>
+        </div>
         <div className="flex items-center md:gap-8 gap-5 py-5 border-pink-800 border-b">
           <p className="w-36">Article has been shared:</p>
           <div className="grid">
@@ -92,6 +96,10 @@ const Result = () => {
           <p>Marks:</p>
           <p>92</p>
         </div>
+        <div className="flex items-center md:gap-32 gap-5 py-5 border-pink-800 border-b">
+          <p>Grade:</p>
+          <p>Second</p>
+        </div>
         <div className="flex items-center md:gap-8 gap-5 py-5 border-pink-800 border-b">
           <p className="w-36">Article has been shared:</p>
           <div className="grid">
@@ -167,6 +175,10 @@ const Result = () => {
         <div className="flex items-center md:gap-32 gap-5 py-5 border-pink-800 border-b">
           <p>Marks:</p>
           <p>92</p>
+        </div>
+        <div className="flex items-center md:gap-32 gap-5 py-5 border-pink-800 border-b">
+          <p>Grade:</p>
+          <p>Second</p>
         </div>
         <div className="flex items-center md:gap-8 gap-5 py-5 border-pink-800 border-b">
           <p className="w-36">Article has been shared:</p>

@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { articlePost } from "../../store/actions/articleAction";
 
 const SubmitArticle = () => {
+  const [state, setState] = useState({
+    language: "",
+    typeofArticle: "",
+    article: "",
+  });
+  const dispatch = useDispatch();
+
   const categoriesLanguages = [
     {
       name: "English",
@@ -27,9 +36,19 @@ const SubmitArticle = () => {
     },
   ];
 
+  const changeHandler = (event) => {
+    setState({ ...state, [event.target.name]: event.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(articlePost(state));
+    setState({ language: "", typeofArticle: "", article: "" });
+  };
+
   return (
     <div className="mt-12 max-w-xl sm:p-6 lg:p-8 m-auto shadow-md p-10 rounded-md bg-gray-50">
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="mt-5">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -40,8 +59,9 @@ const SubmitArticle = () => {
           <label>
             <select
               className="py-3 px-4 w-full text-gray-600 relative bg-gray-200 rounded text-sm border border-gray-400 outline-none border-none focus:outline-none focus:bg-white focus:border-gray-500"
-              name="category"
-              //   onChange={changeHandler}
+              name="language"
+              value={state.language}
+              onChange={changeHandler}
             >
               <option>Default</option>
               {categoriesLanguages.map((el) => (
@@ -60,8 +80,9 @@ const SubmitArticle = () => {
           <label>
             <select
               className="py-3 px-4 w-full text-gray-600 relative bg-gray-200 rounded text-sm border border-gray-400 outline-none border-none focus:outline-none focus:bg-white focus:border-gray-500"
-              name="typeofarticle"
-              //   onChange={changeHandler}
+              name="typeofArticle"
+              onChange={changeHandler}
+              value={state.typeofArticle}
             >
               <option>Default</option>
               {categoriesArticle.map((el) => (
@@ -74,8 +95,9 @@ const SubmitArticle = () => {
           <textarea
             className="appearance-none block w-full h-48 bg-gray-200 text-gray-700 border border-gray-200 rounded py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Enter your article"
-            name="description"
-            // onChange={changeHandler}
+            name="article"
+            onChange={changeHandler}
+            value={state.article}
           />
         </div>
         <div className="mt-5 ">

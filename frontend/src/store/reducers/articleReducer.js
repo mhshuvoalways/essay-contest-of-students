@@ -1,0 +1,28 @@
+import * as Types from "../constants/ArticleTypes";
+
+const init = {
+  articles: [],
+  error: null,
+};
+
+const articleReudcer = (state = init, action) => {
+  switch (action.type) {
+    case Types.POST_ARTICLE: {
+      return {
+        ...state,
+        articles: action.payload,
+        error: null,
+      };
+    }
+    case Types.POST_ARTICLE_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export default articleReudcer;

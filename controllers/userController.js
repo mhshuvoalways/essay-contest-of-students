@@ -1,4 +1,5 @@
 const User = require("../Model/User");
+const IsPaySub = require("../Model/IsPaySubmit");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const serverError = require("../utils/serverError");
@@ -50,10 +51,19 @@ const register = (req, res) => {
               new User(user)
                 .save()
                 .then((response) => {
-                  res.status(200).json({
-                    message: "Check your mail and active your account!",
-                    response,
-                  });
+                  new IsPaySub({
+                    author: response._id,
+                  })
+                    .save()
+                    .then(() => {
+                      res.status(200).json({
+                        message: "Check your mail and active your account!",
+                        response,
+                      });
+                    })
+                    .catch(() => {
+                      serverError(res);
+                    });
                 })
                 .catch(() => {
                   serverError(res);

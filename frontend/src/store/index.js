@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import userReducer from "./reducers/userReducer";
 import adminUserReducer from "./reducers/adminUserReducer";
+import quarterlyAnnounceReducer from "./reducers/quarterlyAnnounceReducer";
+import articleReducer from "./reducers/articleReducer";
 
 import alertReducer from "./reducers/alertReducer";
 import thunk from "redux-thunk";
@@ -13,6 +15,8 @@ const composedEnhancers = composeWithDevTools(...enhancers);
 const rootReducer = combineReducers({
   userReducer,
   adminUserReducer,
+  quarterlyAnnounceReducer,
+  articleReducer,
   alertReducer,
 });
 
