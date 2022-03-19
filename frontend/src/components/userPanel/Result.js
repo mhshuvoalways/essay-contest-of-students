@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMyArticle } from "../../store/actions/articleAction";
-import ReactHtmlParser from "react-html-parser";
+import parse from 'html-react-parser';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Result = () => {
 
   return (
     <div className="mt-12 max-w-7xl px-4 sm:px-6 lg:px-8 m-auto">
-      {reverseArticles.map((article) => (
+      {reverseArticles.reverse().map((article) => (
         <div className="mb-20 border border-pink-500 bg-gray-50 p-10">
           <div className="flex items-center md:gap-24 gap-5 py-5 border-pink-800 border-b">
             <p>Language:</p>
@@ -51,7 +51,7 @@ const Result = () => {
           </div>
           <div className="flex flex-wrap md:flex-nowrap md:gap-32 gap-5 py-5 ">
             <p>Article:</p>
-            <p> {ReactHtmlParser(article.article)}</p>
+            <p> {parse(article.article)}</p>
           </div>
         </div>
       ))}
