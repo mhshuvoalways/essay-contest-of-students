@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  modalToggle,
+  gradeGet,
+  gradeDelete,
+} from "../../../store/actions/gradeAction";
 
 const GradeSelection = () => {
+  const dispatch = useDispatch();
+  const gradeReducer = useSelector((store) => store.gradeReducer);
+
+  useEffect(() => {
+    dispatch(gradeGet());
+  }, [dispatch]);
+
   return (
     <div className="shadow-sm bg-gray-50 border overflow-x-auto">
       <table className="w-full ">
@@ -10,33 +23,24 @@ const GradeSelection = () => {
           <th className="text-left border px-2 py-3">Max Value</th>
           <th className="text-left border px-2 py-3 w-20">Action</th>
         </tr>
-        <tr>
-          <td className="text-left border p-2">First</td>
-          <td className="text-left border p-2">95.00</td>
-          <td className="text-left border p-2">100.00</td>
-          <td className="text-left border p-2 flex gap-4 flex-wrap justify-between">
-            <i class="fa-solid fa-pen-to-square cursor-pointer"></i>
-            <i class="fa-solid fa-trash-can cursor-pointer"></i>
-          </td>
-        </tr>
-        <tr>
-          <td className="text-left border p-2">Second</td>
-          <td className="text-left border p-2">95.00</td>
-          <td className="text-left border p-2">100.00</td>
-          <td className="text-left border p-2 flex gap-4 flex-wrap justify-between">
-            <i class="fa-solid fa-pen-to-square cursor-pointer"></i>
-            <i class="fa-solid fa-trash-can cursor-pointer"></i>
-          </td>
-        </tr>
-        <tr>
-          <td className="text-left border p-2">Third</td>
-          <td className="text-left border p-2">95.00</td>
-          <td className="text-left border p-2">100.00</td>
-          <td className="text-left border p-2 flex gap-4 flex-wrap justify-between">
-            <i class="fa-solid fa-pen-to-square cursor-pointer"></i>
-            <i class="fa-solid fa-trash-can cursor-pointer"></i>
-          </td>
-        </tr>
+
+        {gradeReducer.grade.map((grade) => (
+          <tr key={grade._id}>
+            <td className="text-left border p-2">{grade.gradeName}</td>
+            <td className="text-left border p-2">{grade.gradeMinValue}</td>
+            <td className="text-left border p-2">{grade.gradeMaxValue}</td>
+            <td className="text-left border p-2 flex gap-4 flex-wrap justify-between">
+              <i
+                class="fa-solid fa-pen-to-square cursor-pointer"
+                onClick={() => dispatch(modalToggle(grade._id))}
+              ></i>
+              <i
+                class="fa-solid fa-trash-can cursor-pointer"
+                onClick={() => dispatch(gradeDelete(grade._id))}
+              ></i>
+            </td>
+          </tr>
+        ))}
       </table>
     </div>
   );

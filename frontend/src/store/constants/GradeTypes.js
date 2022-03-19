@@ -1,0 +1,13 @@
+export const ADD_GRADE = "ADD_GRADE";
+export const ADD_GRADE_ERROR = "ADD_GRADE_ERROR";
+
+export const GET_GRADE = "GET_GRADE";
+export const GET_GRADE_ERROR = "GET_GRADE_ERROR";
+
+export const UPDATE_GRADE = "UPDATE_GRADE";
+export const UPDATE_GRADE_ERROR = "UPDATE_GRADE_ERROR";
+
+export const DELETE_GRADE = "DELETE_GRADE";
+export const DELETE_GRADE_ERROR = "DELETE_GRADE_ERROR";
+
+export const MODAL_TOGGLE = "MODAL_TOGGLE";

@@ -1,10 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { modalToggle } from "../../../store/actions/gradeAction";
 
 const Filter = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex justify-between flex-wrap gap-2">
       <div>
-        <p className="bg-red-600 hover:bg-gray-900 text-white cursor-pointer p-2">
+        <p
+          className="bg-red-600 hover:bg-gray-900 text-white cursor-pointer p-2"
+          onClick={() => dispatch(modalToggle())}
+        >
           + Add Grade
         </p>
       </div>

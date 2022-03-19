@@ -4,6 +4,7 @@ import userReducer from "./reducers/userReducer";
 import adminUserReducer from "./reducers/adminUserReducer";
 import quarterlyAnnounceReducer from "./reducers/quarterlyAnnounceReducer";
 import articleReducer from "./reducers/articleReducer";
+import gradeReducer from "./reducers/gradeReducer";
 
 import alertReducer from "./reducers/alertReducer";
 import thunk from "redux-thunk";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   adminUserReducer,
   quarterlyAnnounceReducer,
   articleReducer,
+  gradeReducer,
   alertReducer,
 });
 

@@ -8,6 +8,7 @@ const userRouter = require("./routers/userRouter");
 const adminUserRouter = require("./routers/adminUserRouter");
 const articleRouter = require("./routers/articleRouter");
 const quarterAnnounceRouter = require("./routers/quarterAnnounceRouter");
+const gradeRouter = require("./routers/gradeRouter");
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use("/user", userRouter);
 app.use("/adminuser", adminUserRouter);
 app.use("/article", articleRouter);
 app.use("/quarterannounce", quarterAnnounceRouter);
+app.use("/grade", gradeRouter);
 
 app.get("/", (req, res) => {
   res.send("A MERN stack monomousumicontest website");

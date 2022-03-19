@@ -1,13 +1,11 @@
 import React from "react";
 import Sidebar from "../../components/adminPanel/Sidebar";
-import Filter from "../../components/adminPanel/Grade/Filter";
-import GradeSelection from "../../components/adminPanel/Grade/GradeSelection";
+import Grade from "../../components/adminPanel/Grade/Index";
 
 const Articles = () => {
   return (
     <Sidebar>
-      <Filter />
-      <GradeSelection />
+      <Grade />
     </Sidebar>
   );
 };
