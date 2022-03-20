@@ -8,9 +8,10 @@ const init = {
 const articleReudcer = (state = init, action) => {
   switch (action.type) {
     case Types.POST_ARTICLE: {
+      const temp = [...state.articles, action.payload];
       return {
         ...state,
-        articles: action.payload,
+        articles: temp,
         error: null,
       };
     }

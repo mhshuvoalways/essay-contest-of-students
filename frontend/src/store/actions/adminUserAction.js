@@ -48,6 +48,7 @@ export const userLogin = (user, navigate, form) => (dispatch) => {
       });
       setAuthToken(response.data.token);
       localStorage.setItem("adminToken", response.data.token);
+      localStorage.removeItem("token");
       dispatch(alertAction(response.data.message));
       navigate(form, { replace: true });
     })

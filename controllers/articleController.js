@@ -1,4 +1,5 @@
 const Article = require("../Model/Articles");
+const IsPaySubmit = require("../Model/IsPaySubmit");
 const QuarterAnnounce = require("../Model/Quarter&Announce");
 const serverError = require("../utils/serverError");
 const articleValidator = require("../validations/articleValidation");
@@ -20,13 +21,35 @@ const postArticle = (req, res) => {
               year: findqa[0].year,
             },
           };
-          new Article(articleObj)
-            .save()
-            .then((response) => {
-              res.status(200).json({
-                message: "We have got your article. Thanks!",
-                response,
-              });
+          IsPaySubmit.findOne({ author: req.user._id })
+            .then((ispaysub) => {
+              if (ispaysub.submissionCount >= 3) {
+                res.status(400).json({
+                  message: "Opps! You limits have been reached!",
+                });
+              } else {
+                new Article(articleObj)
+                  .save()
+                  .then((response) => {
+                    const updateObj = ispaysub.submissionCount + 1;
+                    IsPaySubmit.findOneAndUpdate(
+                      { author: req.user._id },
+                      { submissionCount: updateObj }
+                    )
+                      .then(() => {
+                        res.status(200).json({
+                          message: "We have got your article. Thanks!",
+                          response,
+                        });
+                      })
+                      .catch(() => {
+                        serverError(res);
+                      });
+                  })
+                  .catch(() => {
+                    serverError(res);
+                  });
+              }
             })
             .catch(() => {
               serverError(res);

@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../../utils/axios";
+import { ispaysubmitGet } from "../../store/actions/isPaySubmitAction";
 import alertAction from "../../store/actions/alertAction";
 
 const Payment = () => {
+  const amount = 20;
   const dispatch = useDispatch();
   const userReducer = useSelector((store) => store.userReducer);
   const loadRazorpay = () => {
     axios
-      .post("/payment/createorder", { amount: 20 + "00" })
+      .post("/payment/createorder", { amount: amount + "00" })
       .then((res) => {
         const { amount, id: order_id, currency } = res.data;
         axios
@@ -31,6 +33,7 @@ const Payment = () => {
                     signature: response.razorpay_signature,
                   })
                   .then((response) => {
+                    dispatch(ispaysubmitGet());
                     dispatch(alertAction(response.data.message));
                   })
                   .catch((err) => {
@@ -62,14 +65,13 @@ const Payment = () => {
   };
 
   return (
-    <div>
-      <button
-        onClick={loadRazorpay}
-        className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
-      >
-        PAY AND SUBMIT
-      </button>
-    </div>
+    <button
+      onClick={loadRazorpay}
+      type="button"
+      className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
+    >
+      PAYMENT
+    </button>
   );
 };
 

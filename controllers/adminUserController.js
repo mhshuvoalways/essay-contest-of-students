@@ -13,7 +13,6 @@ const { adminRecoverPass, adminActiveAccount } = require("../mail/templates");
 
 const register = (req, res) => {
   const { email, name, phone, password, recaptch } = req.body;
-  console.log(req.body);
   const validation = adminRegisterValidation({
     email,
     name,
@@ -107,6 +106,7 @@ const login = (req, res) => {
                     _id: response._id,
                     email: response.email,
                     name: response.name,
+                    role: response.role,
                   },
                   process.env.SECRET,
                   { expiresIn: "1h" }

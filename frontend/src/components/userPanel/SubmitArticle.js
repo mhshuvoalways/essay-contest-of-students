@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { articlePost } from "../../store/actions/articleAction";
+import { ispaysubmitGet } from "../../store/actions/isPaySubmitAction";
 import { getMe } from "../../store/actions/userAction";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
 import Payment from "./Payment";
 
 const SubmitArticle = () => {
@@ -14,9 +15,12 @@ const SubmitArticle = () => {
     article: "",
   });
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+  const isPaySubmitReducer = useSelector((store) => store.isPaySubmitReducer);
 
   useEffect(() => {
     dispatch(getMe());
+    dispatch(ispaysubmitGet());
   }, [dispatch]);
 
   const categoriesLanguages = [
@@ -55,12 +59,18 @@ const SubmitArticle = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(articlePost(state));
+    dispatch(articlePost(state, navigation));
     setState({ language: "", typeofArticle: "", article: "" });
   };
 
   return (
     <div className="mt-12 max-w-xl sm:p-6 lg:p-8 m-auto shadow-md p-10 rounded-md bg-gray-50">
+      {isPaySubmitReducer.ispaysubmitObj.isPayment && (
+        <p className="border p-4">
+          You can submit {3 - isPaySubmitReducer.ispaysubmitObj.submissionCount}{" "}
+          more times out of 3 times
+        </p>
+      )}
       <form onSubmit={onSubmit}>
         <div className="mt-5">
           <label
@@ -113,12 +123,15 @@ const SubmitArticle = () => {
           />
         </div>
         <div className="mt-5 ">
-          <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
-            PAY AND SUBMIT
-          </button>
+          {isPaySubmitReducer.ispaysubmitObj.isPayment ? (
+            <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
+              SUBMIT
+            </button>
+          ) : (
+            <Payment />
+          )}
         </div>
       </form>
-      <Payment />
     </div>
   );
 };

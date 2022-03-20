@@ -2,15 +2,16 @@ import * as Types from "../constants/ArticleTypes";
 import axios from "../../utils/axios";
 import alertAction from "./alertAction";
 
-export const articlePost = (article) => (dispatch) => {
+export const articlePost = (article, navigation) => (dispatch) => {
   axios
     .post("/article/postarticle", article)
     .then((response) => {
       dispatch({
         type: Types.POST_ARTICLE,
-        payload: response.data,
+        payload: response.data.response,
       });
       dispatch(alertAction(response.data.message));
+      navigation('/result')
     })
     .catch((err) => {
       dispatch({

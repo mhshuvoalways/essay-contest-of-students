@@ -6,13 +6,17 @@ import {
   gradeDelete,
 } from "../../../store/actions/gradeAction";
 
-const GradeSelection = () => {
+const GradeSelection = ({ value }) => {
   const dispatch = useDispatch();
   const gradeReducer = useSelector((store) => store.gradeReducer);
 
   useEffect(() => {
     dispatch(gradeGet());
   }, [dispatch]);
+
+  const performanceSearch = gradeReducer.grade.filter((grade) =>
+    grade.gradeName.toLowerCase().includes(value.toLowerCase())
+  );
 
   return (
     <div className="shadow-sm bg-gray-50 border overflow-x-auto">
@@ -24,7 +28,7 @@ const GradeSelection = () => {
           <th className="text-left border px-2 py-3 w-20">Action</th>
         </tr>
 
-        {gradeReducer.grade.map((grade) => (
+        {performanceSearch.map((grade) => (
           <tr key={grade._id}>
             <td className="text-left border p-2">{grade.gradeName}</td>
             <td className="text-left border p-2">{grade.gradeMinValue}</td>

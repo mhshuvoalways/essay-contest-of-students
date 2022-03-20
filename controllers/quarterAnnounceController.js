@@ -1,4 +1,5 @@
 const QuarterAnnounce = require("../Model/Quarter&Announce");
+const IsPaySubmit = require("../Model/IsPaySubmit");
 const quarterAnnounceValidation = require("../validations/quarterAnnounceValidation");
 const serverError = require("../utils/serverError");
 
@@ -21,10 +22,20 @@ const addQuarterAnnounce = (req, res) => {
             new: true,
           })
             .then((response) => {
-              res.status(200).json({
-                message: `Quarterly ${toggle ? "start" : "stop"}`,
-                response: response,
-              });
+              const inspaysubmit = {
+                isPayment: false,
+                submissionCount: 0,
+              };
+              IsPaySubmit.updateMany(inspaysubmit)
+                .then(() => {
+                  res.status(200).json({
+                    message: `Quarterly ${toggle ? "start" : "stop"}`,
+                    response: response,
+                  });
+                })
+                .catch(() => {
+                  serverError(res);
+                });
             })
             .catch(() => {
               serverError(res);

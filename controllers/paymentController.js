@@ -1,5 +1,6 @@
 const Razorpay = require("razorpay");
 const Payment = require("../Model/Payment");
+const IsPaySubmit = require("../Model/IsPaySubmit");
 const serverError = require("../utils/serverError");
 
 const createOrder = async (req, res) => {
@@ -34,9 +35,19 @@ const payOrder = (req, res) => {
   new Payment(obj)
     .save()
     .then(() => {
-      res.status(200).json({
-        message: "Thanks for payment!",
-      });
+      IsPaySubmit.findOneAndUpdate(
+        { author: req.user._id },
+        { isPayment: true },
+        { new: true }
+      )
+        .then(() => {
+          res.status(200).json({
+            message: "Thanks for payment!",
+          });
+        })
+        .catch(() => {
+          serverError(res);
+        });
     })
     .catch(() => {
       serverError(res);
@@ -44,7 +55,7 @@ const payOrder = (req, res) => {
 };
 
 const getKey = (req, res) => {
-  res.status(200).json('rzp_test_MK6e9xBvaWxbV1');
+  res.status(200).json("rzp_test_MK6e9xBvaWxbV1");
 };
 
 module.exports = {

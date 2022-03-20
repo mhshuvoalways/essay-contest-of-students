@@ -48,6 +48,7 @@ export const userLogin = (user, navigate, form) => (dispatch) => {
       });
       setAuthToken(response.data.token);
       localStorage.setItem("token", response.data.token);
+      localStorage.removeItem("adminToken");
       dispatch(alertAction(response.data.message));
       navigate(form, { replace: true });
     })
@@ -171,7 +172,6 @@ export const getMe = () => (dispatch) => {
   axios
     .get("/user/getme")
     .then((response) => {
-      console.log(response.data);
       dispatch({
         type: Types.GETME,
         payload: response.data,

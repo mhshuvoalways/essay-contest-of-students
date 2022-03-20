@@ -63,9 +63,9 @@ const adminRegisterValidation = (value) => {
   if (!value.password) {
     error.password = "Please provide your password";
   } else if (value.password.length < 6) {
-    error.password = "Please provide minimum 6 character";
+    error.password = "Please provide minimum 6 character of your password";
   } else if (value.password.length > 20) {
-    error.password = "Please provide maximum 20 character";
+    error.password = "Please provide maximum 20 character of your password";
   }
   if (!value.recaptch) {
     error.recaptch = "Please fill up recaptch";

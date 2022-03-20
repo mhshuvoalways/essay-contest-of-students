@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { modalToggle } from "../../../store/actions/gradeAction";
 
-const Filter = () => {
+const Filter = ({onChangeHandler}) => {
   const dispatch = useDispatch();
 
   return (
@@ -21,6 +21,7 @@ const Filter = () => {
           type="text"
           placeholder="Search with name"
           className="px-2 rounded-lg w-full bg-gray-50 border border-gray-300"
+          onChange={onChangeHandler}
         />
       </div>
     </div>
