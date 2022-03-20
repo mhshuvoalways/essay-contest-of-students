@@ -28,7 +28,6 @@ export const getMyArticle = () => (dispatch) => {
   axios
     .get("/article/getmyarticles")
     .then((response) => {
-      console.log(response);
       dispatch({
         type: Types.GET_MY_ARTICLE,
         payload: response.data,

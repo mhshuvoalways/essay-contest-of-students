@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { articlePost } from "../../store/actions/articleAction";
-import ReactQuill from "react-quill"; 
-import "react-quill/dist/quill.snow.css"; 
+import { getMe } from "../../store/actions/userAction";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+import Payment from "./Payment";
 
 const SubmitArticle = () => {
   const [state, setState] = useState({
@@ -11,6 +14,10 @@ const SubmitArticle = () => {
     article: "",
   });
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
 
   const categoriesLanguages = [
     {
@@ -111,6 +118,7 @@ const SubmitArticle = () => {
           </button>
         </div>
       </form>
+      <Payment />
     </div>
   );
 };

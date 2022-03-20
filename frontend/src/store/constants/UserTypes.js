@@ -13,6 +13,12 @@ export const ISAUTHENTICATE = "ISAUTHENTICATE";
 export const FIND_MAIL = "FIND_MAIL";
 export const FIND_MAIL_ERROR = "FIND_MAIL_ERROR";
 
+export const GETME = "GETME";
+export const GETME_ERROR = "GETME_ERROR";
+
+export const GETALLUSER = "GETALLUSER";
+export const GETALLUSER_ERROR = "GETALLUSER_ERROR";
+
 export const RECOVER_PASS = "RECOVER_PASS";
 export const RECOVER_PASS_ERROR = "RECOVER_PASS_ERROR";
 

@@ -242,10 +242,32 @@ const recoverPassword = (req, res) => {
   }
 };
 
+const getMe = (req, res) => {
+  User.findOne({ _id: req.user._id })
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
+const getAllUser = (req, res) => {
+  User.find()
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
 module.exports = {
   register,
   login,
   activeAccountController,
   findMail,
   recoverPassword,
+  getMe,
+  getAllUser,
 };

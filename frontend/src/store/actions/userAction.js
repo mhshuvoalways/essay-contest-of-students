@@ -167,6 +167,25 @@ export const isAuthenticate = () => (dispatch) => {
   }
 };
 
+export const getMe = () => (dispatch) => {
+  axios
+    .get("/user/getme")
+    .then((response) => {
+      console.log(response.data);
+      dispatch({
+        type: Types.GETME,
+        payload: response.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: Types.GETME_ERROR,
+        payload: err.response.data,
+      });
+      dispatch(alertAction(err.response.data.message));
+    });
+};
+
 export const freshData = () => (dispatch) => {
   dispatch({
     type: Types.FRESH_USER,

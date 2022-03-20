@@ -69,6 +69,19 @@ const userReudcer = (state = init, action) => {
       };
     }
 
+    case Types.GETME: {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+    case Types.GETME_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+
     case Types.RECOVER_PASS: {
       return {
         ...state,
