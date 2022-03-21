@@ -3,6 +3,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import axios from "../../utils/axios";
 import jwt_decode from "jwt-decode";
 import alertAction from "./alertAction";
+import enableBtn from "./enableBtnAction";
 
 export const userRegister = (user, navigate) => (dispatch) => {
   axios
@@ -16,6 +17,7 @@ export const userRegister = (user, navigate) => (dispatch) => {
       });
       dispatch(alertAction(response.data.message));
       navigate("/login");
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
@@ -24,6 +26,7 @@ export const userRegister = (user, navigate) => (dispatch) => {
           error: err.response.data,
         },
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.email));
       dispatch(alertAction(err.response.data.name));
       dispatch(alertAction(err.response.data.phone));
@@ -51,6 +54,7 @@ export const userLogin = (user, navigate, form) => (dispatch) => {
       localStorage.removeItem("adminToken");
       dispatch(alertAction(response.data.message));
       navigate(form, { replace: true });
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
@@ -59,6 +63,7 @@ export const userLogin = (user, navigate, form) => (dispatch) => {
           error: err.response,
         },
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.email));
       dispatch(alertAction(err.response.data.password));
       dispatch(alertAction(err.response.data.message));

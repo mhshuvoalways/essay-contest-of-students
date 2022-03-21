@@ -1,6 +1,7 @@
 import * as Types from "../constants//GradeTypes";
 import axios from "../../utils/axios";
 import alertAction from "./alertAction";
+import enableBtn from "./enableBtnAction";
 
 export const gradeAdd = (grade) => (dispatch) => {
   axios
@@ -10,12 +11,14 @@ export const gradeAdd = (grade) => (dispatch) => {
         type: Types.ADD_GRADE,
         payload: response.data,
       });
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
         type: Types.ADD_GRADE_ERROR,
         payload: err.response.data,
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.message));
     });
 };
@@ -46,12 +49,14 @@ export const gradeUpdate = (id, grade) => (dispatch) => {
         type: Types.UPDATE_GRADE,
         payload: response.data,
       });
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
         type: Types.UPDATE_GRADE_ERROR,
         payload: err.response.data,
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.message));
     });
 };

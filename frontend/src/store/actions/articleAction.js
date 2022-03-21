@@ -1,6 +1,7 @@
 import * as Types from "../constants/ArticleTypes";
 import axios from "../../utils/axios";
 import alertAction from "./alertAction";
+import enableBtn from "./enableBtnAction";
 
 export const articlePost = (article, navigation) => (dispatch) => {
   axios
@@ -11,6 +12,7 @@ export const articlePost = (article, navigation) => (dispatch) => {
         payload: response.data.response,
       });
       dispatch(alertAction(response.data.message));
+      dispatch(enableBtn(true));
       navigation("/result");
     })
     .catch((err) => {
@@ -22,6 +24,7 @@ export const articlePost = (article, navigation) => (dispatch) => {
       dispatch(alertAction(err.response.data.typeofArticle));
       dispatch(alertAction(err.response.data.article));
       dispatch(alertAction(err.response.data.message));
+      dispatch(enableBtn(true));
     });
 };
 
@@ -34,12 +37,14 @@ export const articleUpdate = (article, id) => (dispatch) => {
         payload: response.data,
       });
       dispatch(modalToggle());
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
         type: Types.UPDATE_ARTICLE_ERROR,
         payload: err.response.data,
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.message));
     });
 };
@@ -119,11 +124,5 @@ export const getIndividualActicle = (id) => (dispatch) => {
 export const modalToggle = () => (dispatch) => {
   dispatch({
     type: Types.MODAL_TOGGLE,
-  });
-};
-
-export const enableBtn = () => (dispatch) => {
-  dispatch({
-    type: Types.ENABLE_BTN,
   });
 };

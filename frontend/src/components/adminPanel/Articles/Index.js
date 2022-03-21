@@ -8,6 +8,7 @@ import Modal from "../../Modal";
 
 const Index = () => {
   const [id, setId] = useState("");
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const articleReducer = useSelector((store) => store.articleReducer);
 
@@ -16,10 +17,14 @@ const Index = () => {
     dispatch(modalToggle());
   };
 
+  const changeHandler = (event) => {
+    setSearch(event.target.value);
+  };
+
   return (
     <div>
-      <Filter />
-      <Articles modalHandler={modalHandler} />
+      <Filter changeHandler={changeHandler} />
+      <Articles modalHandler={modalHandler} search={search} />
       <Modal
         modal={articleReducer.modal}
         modalHandler={modalHandler}

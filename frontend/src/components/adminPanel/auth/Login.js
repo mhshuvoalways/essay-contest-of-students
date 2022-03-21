@@ -8,6 +8,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { userLogin } from "../../../store/actions/adminUserAction";
+import enableBtn from "../../../store/actions/enableBtnAction";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -17,6 +18,7 @@ const Login = () => {
   });
 
   const auth = useSelector((store) => store.adminUserReducer.isAuthenticate);
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,6 +48,7 @@ const Login = () => {
     event.preventDefault();
     const { email, password } = state;
     dispatch(userLogin({ email, password }, navigate, from));
+    dispatch(enableBtn(false));
     if (!state.checked) {
       localStorage.removeItem("email");
       localStorage.removeItem("password");
@@ -115,9 +118,18 @@ const Login = () => {
               </Link>
             </label>
           </div>
-          <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
-            LOGIN
-          </button>
+          {enableBtnReducer ? (
+            <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
+              LOGIN
+            </button>
+          ) : (
+            <button
+              className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+              type="button"
+            >
+              LOGIN
+            </button>
+          )}
         </div>
       </form>
     </div>

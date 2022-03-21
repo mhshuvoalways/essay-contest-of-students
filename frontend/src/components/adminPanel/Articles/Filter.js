@@ -1,6 +1,6 @@
 import React from "react";
 
-const Filter = () => {
+const Filter = ({ changeHandler }) => {
   const language = [
     {
       name: "All",
@@ -32,6 +32,7 @@ const Filter = () => {
           type="text"
           placeholder="Search with email"
           className="px-2 rounded-lg w-full bg-gray-50 border border-gray-300"
+          onChange={changeHandler}
         />
       </div>
     </div>

@@ -6,6 +6,7 @@ import quarterlyAnnounceReducer from "./reducers/quarterlyAnnounceReducer";
 import articleReducer from "./reducers/articleReducer";
 import gradeReducer from "./reducers/gradeReducer";
 import isPaySubmitReducer from "./reducers/isPaySubmitReducer";
+import enableBtnReducer from "./reducers/enableBtnReducer";
 
 import alertReducer from "./reducers/alertReducer";
 import thunk from "redux-thunk";
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   articleReducer,
   gradeReducer,
   isPaySubmitReducer,
+  enableBtnReducer,
   alertReducer,
 });
 

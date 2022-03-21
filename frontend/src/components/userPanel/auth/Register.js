@@ -3,6 +3,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate, NavLink, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userRegister } from "../../../store/actions/userAction";
+import enableBtn from "../../../store/actions/enableBtnAction";
 
 const Register = () => {
   const [state, setState] = useState({
@@ -18,7 +19,10 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const auth = useSelector((store) => store.userReducer.isAuthenticate);
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
+
   const onChange = (event) => {
     setState({
       ...state,
@@ -43,6 +47,7 @@ const Register = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(userRegister(state, navigate));
+    dispatch(enableBtn(false));
   };
 
   if (auth) {
@@ -162,13 +167,22 @@ const Register = () => {
             </label>
           </div>
           {state.agree ? (
-            <button
-              className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
-              type="button"
-              onClick={onSubmit}
-            >
-              REGISTER
-            </button>
+            enableBtnReducer ? (
+              <button
+                className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
+                type="button"
+                onClick={onSubmit}
+              >
+                REGISTER
+              </button>
+            ) : (
+              <button
+                className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+                type="button"
+              >
+                REGISTER
+              </button>
+            )
           ) : (
             <button
               className="bg-gray-300 text-gray-500 py-2 mt-5 w-full cursor-not-allowed"

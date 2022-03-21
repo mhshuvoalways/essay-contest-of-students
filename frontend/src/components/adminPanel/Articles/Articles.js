@@ -7,7 +7,7 @@ import {
   deleteArticle,
 } from "../../../store/actions/articleAction";
 
-const Articles = ({ modalHandler }) => {
+const Articles = ({ modalHandler, search }) => {
   const dispatch = useDispatch();
 
   const adminReducer = useSelector((store) => store.adminUserReducer);
@@ -16,6 +16,10 @@ const Articles = ({ modalHandler }) => {
   useEffect(() => {
     dispatch(getArticle());
   }, [dispatch]);
+
+  const performanceSearch = articleReducer.articles.filter((grade) =>
+    grade.author.email.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="shadow-sm bg-gray-50 border overflow-x-auto">
@@ -36,7 +40,7 @@ const Articles = ({ modalHandler }) => {
           )}
           <th className="text-left border px-2 py-3">Action</th>
         </tr>
-        {articleReducer.articles.map((el) => (
+        {performanceSearch.map((el) => (
           <tr key={el._id}>
             <td className="text-left border p-2">{el.author.name}</td>
             <td className="text-left border p-2">{el.author.email}</td>
@@ -49,14 +53,18 @@ const Articles = ({ modalHandler }) => {
             </td>
             <td className="text-left border p-2">
               {adminReducer.user.role === "admin"
-                ? Math.round(el.finalAvg)
+                ? el.finalAvg === 0
+                  ? null
+                  : Math.round(el.finalAvg)
                 : el.avgMarks.map((am) => {
                     return adminReducer.user._id === am.author && am.marks;
                   })}
             </td>
             {adminReducer.user.role === "admin" ? (
               <>
-                <td className="text-left border p-2">{el.finalMarks}</td>
+                <td className="text-left border p-2">
+                  {el.finalMarks === 0 ? null : el.finalMarks}
+                </td>
                 <td className="text-left border p-2">{el.grade && el.grade}</td>
                 <td className="text-left border p-2 flex gap-2 flex-wrap justify-between">
                   <Link to={`/admin/article/${el._id}`}>

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { articleUpdate } from "../../../store/actions/articleAction";
+import enableBtn from "../../../store/actions/enableBtnAction";
 
 const Marks = ({ id, articleReducer }) => {
   const [state, setState] = useState("");
   const dispatch = useDispatch();
 
   const adminUserReducer = useSelector((store) => store.adminUserReducer);
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
 
   const onChangeHandler = (event) => {
     setState(event.target.value);
@@ -22,6 +24,7 @@ const Marks = ({ id, articleReducer }) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(articleUpdate({ marks: state }, id));
+    dispatch(enableBtn(false));
   };
 
   return (
@@ -37,9 +40,15 @@ const Marks = ({ id, articleReducer }) => {
           value={state}
         />
       </div>
-      <button className="bg-red-600 text-white py-1 mt-5 w-full hover:bg-gray-900">
-        Marks
-      </button>
+      {enableBtnReducer ? (
+        <button className="bg-red-600 text-white py-1 mt-5 w-full hover:bg-gray-900">
+          Marks
+        </button>
+      ) : (
+        <button className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-1 mt-5 w-full hover:bg-gray-900">
+          Marks
+        </button>
+      )}
     </form>
   );
 };

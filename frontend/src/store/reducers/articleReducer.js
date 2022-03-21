@@ -5,7 +5,6 @@ const init = {
   indivudualArticles: null,
   error: null,
   modal: false,
-  enableBtn: true,
 };
 
 const articleReudcer = (state = init, action) => {
@@ -16,14 +15,12 @@ const articleReudcer = (state = init, action) => {
         ...state,
         articles: temp,
         error: null,
-        enableBtn: true,
       };
     }
     case Types.POST_ARTICLE_ERROR: {
       return {
         ...state,
         error: action.payload,
-        enableBtn: true,
       };
     }
 
@@ -35,14 +32,12 @@ const articleReudcer = (state = init, action) => {
         ...state,
         articles: temp,
         error: null,
-        enableBtn: true
       };
     }
     case Types.UPDATE_ARTICLE_ERROR: {
       return {
         ...state,
         error: action.payload,
-        enableBtn: true
       };
     }
 
@@ -103,18 +98,11 @@ const articleReudcer = (state = init, action) => {
         error: action.payload,
       };
     }
-
+    
     case Types.MODAL_TOGGLE: {
       return {
         ...state,
         modal: !state.modal,
-      };
-    }
-
-    case Types.ENABLE_BTN: {
-      return {
-        ...state,
-        enableBtn: false,
       };
     }
 

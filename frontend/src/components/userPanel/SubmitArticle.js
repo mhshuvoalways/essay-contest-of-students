@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { articlePost, enableBtn } from "../../store/actions/articleAction";
+import { articlePost } from "../../store/actions/articleAction";
 import { ispaysubmitGet } from "../../store/actions/isPaySubmitAction";
+import enableBtn  from "../../store/actions/enableBtnAction";
 import { getMe } from "../../store/actions/userAction";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -17,7 +18,7 @@ const SubmitArticle = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const isPaySubmitReducer = useSelector((store) => store.isPaySubmitReducer);
-  const articleReducer = useSelector((store) => store.articleReducer);
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
 
   useEffect(() => {
     dispatch(getMe());
@@ -61,7 +62,7 @@ const SubmitArticle = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(articlePost(state, navigation));
-    dispatch(enableBtn());
+    dispatch(enableBtn(false));
     setState({ language: "Default", typeofArticle: "Default", article: "" });
   };
 
@@ -126,7 +127,7 @@ const SubmitArticle = () => {
         </div>
         <div className="mt-5 ">
           {isPaySubmitReducer.ispaysubmitObj.isPayment ? (
-            articleReducer.enableBtn ? (
+            enableBtnReducer ? (
               <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
                 SUBMIT
               </button>

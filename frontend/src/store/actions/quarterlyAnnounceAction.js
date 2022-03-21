@@ -1,6 +1,7 @@
 import * as Types from "../constants/QuarterAnnounceTypes";
 import axios from "../../utils/axios";
 import alertAction from "./alertAction";
+import enableBtn from "./enableBtnAction";
 
 export const addquarterAnnounce = (quarterannounce) => (dispatch) => {
   axios
@@ -11,12 +12,14 @@ export const addquarterAnnounce = (quarterannounce) => (dispatch) => {
         payload: response.data.response,
       });
       dispatch(alertAction(response.data.message));
+      dispatch(enableBtn(true))
     })
     .catch((err) => {
       dispatch({
         type: Types.QUARTERLYANNOUCE_ERROR,
         payload: err.response.data,
       });
+      dispatch(enableBtn(true))
       dispatch(alertAction(err.response.data.year));
       dispatch(alertAction(err.response.data.quarterly));
       dispatch(alertAction(err.response.data.message));
@@ -31,6 +34,7 @@ export const updateAnnounce = () => (dispatch) => {
         type: Types.UPDATE_QUARTERLYANNOUCE,
         payload: response.data.response,
       });
+      dispatch(enableBtn(true))
       dispatch(alertAction(response.data.message));
     })
     .catch((err) => {
@@ -38,6 +42,7 @@ export const updateAnnounce = () => (dispatch) => {
         type: Types.UPDATE_QUARTERLYANNOUCE_ERROR,
         payload: err.response.data,
       });
+      dispatch(enableBtn(true))
       dispatch(alertAction(err.response.data.message));
     });
 };

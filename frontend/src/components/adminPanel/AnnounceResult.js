@@ -5,6 +5,7 @@ import {
   getQuarterAnnounce,
   updateAnnounce,
 } from "../../store/actions/quarterlyAnnounceAction";
+import enableBtn from "../../store/actions/enableBtnAction";
 
 const AnnounceResult = () => {
   const [state, setState] = useState({
@@ -17,6 +18,8 @@ const AnnounceResult = () => {
   const quarterAnnounce = useSelector(
     (store) => store.quarterlyAnnounceReducer
   );
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
+
   const dispatch = useDispatch();
 
   const temp = [];
@@ -66,11 +69,13 @@ const AnnounceResult = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(addquarterAnnounce(state));
+    dispatch(enableBtn(false));
   };
 
   const onSubmitIsAnnounce = (event) => {
     event.preventDefault();
     dispatch(updateAnnounce());
+    dispatch(enableBtn(false));
   };
 
   return (
@@ -111,32 +116,64 @@ const AnnounceResult = () => {
       </div>
       <div className="mt-5">
         {state.toggleStartStop ? (
-          <button
-            className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
-            onClick={onSubmit}
-          >
-            STOP
-          </button>
-        ) : (
+          enableBtnReducer ? (
+            <button
+              className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
+              onClick={onSubmit}
+            >
+              STOP
+            </button>
+          ) : (
+            <button
+              className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+              type="button"
+            >
+              STOP
+            </button>
+          )
+        ) : enableBtnReducer ? (
           <button
             className="bg-pink-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
             onClick={onSubmit}
           >
             START
           </button>
+        ) : (
+          <button
+            className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+            type="button"
+          >
+            START
+          </button>
         )}
         {state.toggleStartStop ? (
           state.isAnnounce ? (
-            <button
-              className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
-              onClick={onSubmitIsAnnounce}
-            >
-              ANNOUNCE RESULT STOP
-            </button>
-          ) : (
+            enableBtnReducer ? (
+              <button
+                className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
+                onClick={onSubmitIsAnnounce}
+              >
+                ANNOUNCE RESULT STOP
+              </button>
+            ) : (
+              <button
+                className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+                type="button"
+              >
+                ANNOUNCE RESULT STOP
+              </button>
+            )
+          ) : enableBtnReducer ? (
             <button
               className="bg-pink-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
               onClick={onSubmitIsAnnounce}
+            >
+              ANNOUNCE RESULT START
+            </button>
+          ) : (
+            <button
+              className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+              type="button"
             >
               ANNOUNCE RESULT START
             </button>

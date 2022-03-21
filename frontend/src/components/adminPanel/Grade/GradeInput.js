@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { gradeAdd } from "../../../store/actions/gradeAction";
+import enableBtn from "../../../store/actions/enableBtnAction";
 
 const GradeInput = () => {
   const [state, setState] = useState({
@@ -10,6 +11,7 @@ const GradeInput = () => {
   });
 
   const dispatch = useDispatch();
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
 
   const onChangeHandler = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });
@@ -18,6 +20,7 @@ const GradeInput = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dispatch(gradeAdd(state));
+    dispatch(enableBtn(false));
   };
 
   return (
@@ -55,9 +58,15 @@ const GradeInput = () => {
           value={state.gradeMaxValue}
         />
       </div>
-      <button className="bg-red-600 text-white py-1 mt-5 w-full hover:bg-gray-900">
-        Add
-      </button>
+      {enableBtnReducer ? (
+        <button className="bg-red-600 text-white py-1 mt-5 w-full hover:bg-gray-900">
+          Add
+        </button>
+      ) : (
+        <button className="bg-gray-600 opacity-50 cursor-not-allowedtext-white py-1 mt-5 w-full hover:bg-gray-900">
+          Add
+        </button>
+      )}
     </form>
   );
 };
