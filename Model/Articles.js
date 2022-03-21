@@ -27,9 +27,22 @@ const articlesSchema = new Schema(
       year: {
         type: String,
         required: true,
-      }
+      },
     },
-    marks: {
+    avgMarks: [
+      {
+        author: {
+          type: mongoose.Types.ObjectId,
+          ref: "adminuser",
+        },
+        marks: Number,
+      },
+    ],
+    finalAvg: {
+      type: Number,
+      default: 0,
+    },
+    finalMarks: {
       type: Number,
       default: 0,
     },

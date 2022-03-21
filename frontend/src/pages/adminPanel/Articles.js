@@ -1,12 +1,10 @@
 import React from "react";
 import Sidebar from "../../components/adminPanel/Sidebar";
-import Filter from "../../components/adminPanel/Articles/Filter";
-import ArticlesComponent from "../../components/adminPanel/Articles/Articles";
+import ArticlesComponent from "../../components/adminPanel/Articles/Index";
 
 const Articles = () => {
   return (
     <Sidebar>
-      <Filter />
       <ArticlesComponent />
     </Sidebar>
   );

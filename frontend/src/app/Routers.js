@@ -29,6 +29,7 @@ import RecoverPasswordAdmin from "../pages/adminPanel/RecoverPassword";
 import FindMailAdmin from "../pages/adminPanel/FindMail";
 import CheckMsgAdmin from "../pages/adminPanel/CheckMsg";
 import ActiveAccountAdmin from "../pages/adminPanel/ActiveAccount";
+import ArticleDetails from "../pages/adminPanel/ArticleDetails";
 
 const Routers = () => {
   return (
@@ -125,6 +126,14 @@ const Routers = () => {
           element={
             <AdminRequireAuth>
               <AnnounceResult />
+            </AdminRequireAuth>
+          }
+        ></Route>
+        <Route
+          path="admin/article/:id"
+          element={
+            <AdminRequireAuth>
+              <ArticleDetails />
             </AdminRequireAuth>
           }
         ></Route>

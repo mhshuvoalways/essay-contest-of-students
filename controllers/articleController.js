@@ -1,4 +1,5 @@
 const Article = require("../Model/Articles");
+const Grade = require("../Model/Grade");
 const IsPaySubmit = require("../Model/IsPaySubmit");
 const QuarterAnnounce = require("../Model/Quarter&Announce");
 const serverError = require("../utils/serverError");
@@ -68,8 +69,110 @@ const postArticle = (req, res) => {
   }
 };
 
+const updateArticle = (req, res) => {
+  const id = req.params.id;
+  if (req.user.role === "admin") {
+    Grade.find()
+      .then((response) => {
+        response.map((el) => {
+          if (
+            Number(req.body.marks) >= Number(el.gradeMinValue) &&
+            Number(req.body.marks) <= Number(el.gradeMaxValue)
+          ) {
+            Article.findOneAndUpdate(
+              { _id: id },
+              { finalMarks: req.body.marks, grade: el.gradeName },
+              { new: true }
+            )
+              .populate("author")
+              .then((response) => {
+                res.status(200).json(response);
+              })
+              .catch(() => {
+                serverError(res);
+              });
+          }
+        });
+      })
+      .catch(() => {
+        serverError(res);
+      });
+  } else {
+    Article.findOne({ _id: id })
+      .then((response) => {
+        const findUser = response.avgMarks.find(
+          (el) => el.author.toString() === req.user._id
+        );
+        if (findUser) {
+          const marks = { author: req.user._id, marks: req.body.marks };
+          Article.findOneAndUpdate(
+            { "avgMarks.author": req.user._id },
+            { avgMarks: marks },
+            { new: true }
+          )
+            .then((response) => {
+              let totalSum = 0;
+              response.avgMarks.forEach((el) => {
+                totalSum += el.marks;
+              });
+              let avg = totalSum / response.avgMarks.length;
+              Article.findOneAndUpdate(
+                { _id: id },
+                { finalAvg: avg },
+                { new: true }
+              )
+                .populate("author")
+                .then((finalRes) => {
+                  res.status(200).json(finalRes);
+                })
+                .catch(() => {
+                  serverError(res);
+                });
+            })
+            .catch(() => {
+              serverError(res);
+            });
+        } else {
+          const marks = { author: req.user._id, marks: req.body.marks };
+          response.avgMarks.push(marks);
+          Article.findOneAndUpdate(
+            { _id: id },
+            { avgMarks: response.avgMarks },
+            { new: true }
+          )
+            .then((response) => {
+              let totalSum = 0;
+              response.avgMarks.forEach((el) => {
+                totalSum += el.marks;
+              });
+              let avg = totalSum / response.avgMarks.length;
+              Article.findOneAndUpdate(
+                { _id: id },
+                { finalAvg: avg },
+                { new: true }
+              )
+                .populate("author")
+                .then((finalRes) => {
+                  res.status(200).json(finalRes);
+                })
+                .catch(() => {
+                  serverError(res);
+                });
+            })
+            .catch(() => {
+              serverError(res);
+            });
+        }
+      })
+      .catch(() => {
+        serverError(res);
+      });
+  }
+};
+
 const getArticle = (req, res) => {
   Article.find()
+    .populate("author")
     .then((response) => {
       res.status(200).json(response);
     })
@@ -88,8 +191,31 @@ const getMyArticle = (req, res) => {
     });
 };
 
+const deleteArticle = (req, res) => {
+  Article.findOneAndDelete({ _id: req.params.id })
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
+const getIndividualActicle = (req, res) => {
+  Article.findOne({ _id: req.params.id })
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
 module.exports = {
   postArticle,
   getArticle,
   getMyArticle,
+  updateArticle,
+  deleteArticle,
+  getIndividualActicle,
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   adminIsAuthenticate,
   logout,
@@ -8,6 +8,7 @@ import {
 
 function Sidebar({ children }) {
   const dispatch = useDispatch();
+  const adminReducer = useSelector((store) => store.adminUserReducer);
 
   useEffect(() => {
     dispatch(adminIsAuthenticate());
@@ -104,28 +105,32 @@ function Sidebar({ children }) {
               <i class="fa-solid fa-pen"></i>
               <span>Articles</span>
             </NavLink>
-            <NavLink
-              to="/admin/grade"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
-                  : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
-              }
-            >
-              <i class="fa-solid fa-graduation-cap"></i>
-              <span>Grade Selection</span>
-            </NavLink>
-            <NavLink
-              to="/admin/announce"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
-                  : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
-              }
-            >
-              <i class="fa-solid fa-bullhorn"></i>
-              <span>Announce Result</span>
-            </NavLink>
+            {adminReducer.user.role === "admin" && (
+              <>
+                <NavLink
+                  to="/admin/grade"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
+                      : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
+                  }
+                >
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Grade Selection</span>
+                </NavLink>
+                <NavLink
+                  to="/admin/announce"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
+                      : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
+                  }
+                >
+                  <i class="fa-solid fa-bullhorn"></i>
+                  <span>Announce Result</span>
+                </NavLink>
+              </>
+            )}
             <div
               className="flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white cursor-pointer"
               onClick={() => dispatch(logout())}
