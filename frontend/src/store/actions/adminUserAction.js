@@ -173,6 +173,24 @@ export const adminIsAuthenticate = () => (dispatch) => {
   }
 };
 
+export const getAllUser = () => (dispatch) => {
+  axios
+    .get("/user/getalluser")
+    .then((response) => {
+      dispatch({
+        type: Types.GETALLUSER,
+        payload: response.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: Types.GETALLUSER_ERROR,
+        payload: err.response.data,
+      });
+      dispatch(alertAction(err.response.data.message));
+    });
+};
+
 export const freshData = () => (dispatch) => {
   dispatch({
     type: Types.FRESH_USER,

@@ -6,8 +6,8 @@ const serverError = require("../utils/serverError");
 const createOrder = async (req, res) => {
   try {
     const instance = new Razorpay({
-      key_id: "rzp_test_MK6e9xBvaWxbV1",
-      key_secret: "xXMSflaKCIIPRDnaxroKwEnQ",
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_SECRET,
     });
     const options = {
       amount: req.body.amount,
@@ -55,11 +55,22 @@ const payOrder = (req, res) => {
 };
 
 const getKey = (req, res) => {
-  res.status(200).json("rzp_test_MK6e9xBvaWxbV1");
+  res.status(200).json(process.env.RAZORPAY_KEY_ID);
+};
+
+const getAllPayments = (req, res) => {
+  Payment.find()
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
 };
 
 module.exports = {
   createOrder,
   payOrder,
   getKey,
+  getAllPayments,
 };

@@ -10,6 +10,9 @@ export const LOGOUT_USER = "LOGOUT_USER";
 
 export const ISAUTHENTICATE = "ISAUTHENTICATE";
 
+export const GETALLUSER = "GETALLUSER";
+export const GETALLUSER_ERROR = "GETALLUSER_ERROR";
+
 export const FIND_MAIL = "FIND_MAIL";
 export const FIND_MAIL_ERROR = "FIND_MAIL_ERROR";
 

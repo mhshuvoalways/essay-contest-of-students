@@ -7,7 +7,7 @@ import {
   deleteArticle,
 } from "../../../store/actions/articleAction";
 
-const Articles = ({ modalHandler, search }) => {
+const Articles = ({ modalHandler, search, language }) => {
   const dispatch = useDispatch();
 
   const adminReducer = useSelector((store) => store.adminUserReducer);
@@ -21,9 +21,16 @@ const Articles = ({ modalHandler, search }) => {
     grade.author.email.toLowerCase().includes(search.toLowerCase())
   );
 
+  let temp = [];
+  if (language === "All") {
+    temp = performanceSearch;
+  } else {
+    temp = performanceSearch.filter((el) => el.language === language);
+  }
+
   return (
     <div className="shadow-sm bg-gray-50 border overflow-x-auto">
-      <table className="w-full">
+      <table className="w-full" id="table-to-xls">
         <tr>
           <th className="text-left border px-2 py-3">Name</th>
           <th className="text-left border px-2 py-3">Email</th>
@@ -40,7 +47,7 @@ const Articles = ({ modalHandler, search }) => {
           )}
           <th className="text-left border px-2 py-3">Action</th>
         </tr>
-        {performanceSearch.map((el) => (
+        {temp.reverse().map((el) => (
           <tr key={el._id}>
             <td className="text-left border p-2">{el.author.name}</td>
             <td className="text-left border p-2">{el.author.email}</td>

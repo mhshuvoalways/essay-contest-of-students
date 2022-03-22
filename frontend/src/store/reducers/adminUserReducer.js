@@ -3,6 +3,7 @@ import * as Types from "../constants/AdminUserTypes";
 const init = {
   isAuthenticate: false,
   user: {},
+  allUser: [],
   error: null,
   findMail: false,
   activeAccountMsg: "",
@@ -40,6 +41,19 @@ const userReudcer = (state = init, action) => {
         isAuthenticate: false,
         user: {},
         error: action.payload.error,
+      };
+    }
+
+    case Types.GETALLUSER: {
+      return {
+        ...state,
+        allUser: action.payload,
+      };
+    }
+    case Types.GETALLUSER_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
       };
     }
 

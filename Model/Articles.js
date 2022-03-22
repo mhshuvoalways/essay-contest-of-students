@@ -51,7 +51,11 @@ const articlesSchema = new Schema(
     },
     sharedLinks: [
       {
-        type: String,
+        author: {
+          type: mongoose.Types.ObjectId,
+          ref: "user",
+        },
+        links: String,
       },
     ],
   },
