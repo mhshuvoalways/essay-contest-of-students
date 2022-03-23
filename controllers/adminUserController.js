@@ -109,7 +109,7 @@ const login = (req, res) => {
                     role: response.role,
                   },
                   process.env.SECRET,
-                  { expiresIn: "1h" }
+                  { expiresIn: "10h" }
                 );
                 res.status(200).json({
                   message: "Welcome!",

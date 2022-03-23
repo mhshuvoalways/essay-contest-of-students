@@ -14,7 +14,6 @@ code {
     monospace;
 }
 
-
 /* Sidebar */
 
 #sidebar {
@@ -45,4 +44,28 @@ code {
 
 .ql-container.ql-snow {
   height: 300px;
+}
+
+.animationBg {
+  animation-name: animationBackground;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes animationBackground {
+  0% {
+    background-color: red;
+  }
+  25% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: blue;
+  }
+  75% {
+    background-color: green;
+  }
+  100% {
+    background-color: red;
+  }
 }

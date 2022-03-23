@@ -37,7 +37,7 @@ const Payment = () => {
                     dispatch(alertAction(response.data.message));
                   })
                   .catch((err) => {
-                    dispatch(alertAction(err.data.message));
+                    dispatch(alertAction(err.response.data.message));
                   });
               },
               prefill: {
@@ -56,11 +56,11 @@ const Payment = () => {
             paymentObject.open();
           })
           .catch((err) => {
-            dispatch(alertAction(err.data.message));
+            dispatch(alertAction(err.response.data.message));
           });
       })
       .catch((err) => {
-        dispatch(alertAction(err.data.message));
+        dispatch(alertAction(err.response.data.message));
       });
   };
 

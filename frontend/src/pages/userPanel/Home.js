@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "../../components/userPanel/Navigation";
-import Dashboard from "../../components/userPanel/dashboard/Dashboard";
+import Dashboard from "../../components/userPanel/Dashboard";
 import Footer from "../../components/userPanel/Footer";
 
 const Home = () => {

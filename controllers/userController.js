@@ -101,7 +101,7 @@ const login = (req, res) => {
                     name: response.name,
                   },
                   process.env.SECRET,
-                  { expiresIn: "1h" }
+                  { expiresIn: "10h" }
                 );
                 res.status(200).json({
                   message: "Welcome!",

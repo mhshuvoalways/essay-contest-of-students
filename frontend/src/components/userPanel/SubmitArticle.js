@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { articlePost } from "../../store/actions/articleAction";
 import { ispaysubmitGet } from "../../store/actions/isPaySubmitAction";
-import enableBtn  from "../../store/actions/enableBtnAction";
+import { getQuarterAnnounce } from "../../store/actions/quarterlyAnnounceAction";
+import enableBtn from "../../store/actions/enableBtnAction";
 import { getMe } from "../../store/actions/userAction";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -19,10 +20,14 @@ const SubmitArticle = () => {
   const navigation = useNavigate();
   const isPaySubmitReducer = useSelector((store) => store.isPaySubmitReducer);
   const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
+  const quarterlyAnnounceReducer = useSelector(
+    (store) => store.quarterlyAnnounceReducer
+  );
 
   useEffect(() => {
     dispatch(getMe());
     dispatch(ispaysubmitGet());
+    dispatch(getQuarterAnnounce());
   }, [dispatch]);
 
   const categoriesLanguages = [
@@ -68,12 +73,18 @@ const SubmitArticle = () => {
 
   return (
     <div className="mt-12 max-w-xl sm:p-6 lg:p-8 m-auto shadow-md p-10 rounded-md bg-gray-50">
-      {isPaySubmitReducer.ispaysubmitObj.isPayment && (
-        <p className="border p-4">
-          You can submit {3 - isPaySubmitReducer.ispaysubmitObj.submissionCount}{" "}
-          more times out of 3 times
-        </p>
+      {quarterlyAnnounceReducer.data.toggleStartStop ? (
+        isPaySubmitReducer.ispaysubmitObj.isPayment && (
+          <p className="border p-4">
+            You can submit{" "}
+            {3 - isPaySubmitReducer.ispaysubmitObj.submissionCount} more times
+            out of 3 times
+          </p>
+        )
+      ) : (
+        <p className="border p-4">Quarterly didn't start yet</p>
       )}
+
       <form onSubmit={onSubmit}>
         <div className="mt-5">
           <label
@@ -126,18 +137,27 @@ const SubmitArticle = () => {
           />
         </div>
         <div className="mt-5 ">
-          {isPaySubmitReducer.ispaysubmitObj.isPayment ? (
-            enableBtnReducer ? (
-              <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
-                SUBMIT
-              </button>
+          {quarterlyAnnounceReducer.data.toggleStartStop ? (
+            isPaySubmitReducer.ispaysubmitObj.isPayment ? (
+              enableBtnReducer ? (
+                <button className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
+                  SUBMIT
+                </button>
+              ) : (
+                <button className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900">
+                  SUBMIT
+                </button>
+              )
             ) : (
-              <button className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900">
-                SUBMIT
-              </button>
+              <Payment />
             )
           ) : (
-            <Payment />
+            <button
+              className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+              type="button"
+            >
+              PAYMENT
+            </button>
           )}
         </div>
       </form>

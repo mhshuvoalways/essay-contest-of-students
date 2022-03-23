@@ -20,6 +20,18 @@ const ArticleDetails = () => {
       {articleReducer && (
         <div className="border border-pink-500 bg-gray-50 p-10">
           <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
+            <p className="w-28">Name:</p>
+            <p>{articleReducer.author.name}</p>
+          </div>
+          <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
+            <p className="w-28">Email:</p>
+            <p>{articleReducer.author.email}</p>
+          </div>
+          <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
+            <p className="w-28">Phone:</p>
+            <p>{articleReducer.author.phone}</p>
+          </div>
+          <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
             <p className="w-28">Language:</p>
             <p>{articleReducer.language}</p>
           </div>

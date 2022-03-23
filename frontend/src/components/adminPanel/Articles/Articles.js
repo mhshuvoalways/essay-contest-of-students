@@ -30,13 +30,15 @@ const Articles = ({ modalHandler, search, language }) => {
 
   return (
     <div className="shadow-sm bg-gray-50 border overflow-x-auto">
-      <table className="w-full" id="table-to-xls">
+      <table id="table-to-xls">
         <tr>
-          <th className="text-left border px-2 py-3">Name</th>
+          <th className="text-left border px-2 py-3 ">Name</th>
           <th className="text-left border px-2 py-3">Email</th>
           <th className="text-left border px-2 py-3">Mobile</th>
-          <th className="text-left border px-2 py-3">Quarterly</th>
+          <th className="text-left border px-2 py-3">Language</th>
+          <th className="text-left border px-2 py-3">Type of Article</th>
           <th className="text-left border px-2 py-3">Date</th>
+          <th className="text-left border px-2 py-3">Links</th>
           <th className="text-left border px-2 py-3 w-12">Avg Marks</th>
           {adminReducer.user.role === "admin" && (
             <>
@@ -52,11 +54,26 @@ const Articles = ({ modalHandler, search, language }) => {
             <td className="text-left border p-2">{el.author.name}</td>
             <td className="text-left border p-2">{el.author.email}</td>
             <td className="text-left border p-2">{el.author.phone}</td>
-            <td className="text-left border p-2">
-              {el.qya.quarterly + " of " + el.qya.year}
-            </td>
+            <td className="text-left border p-2">{el.language}</td>
+            <td className="text-left border p-2">{el.typeofArticle}</td>
             <td className="text-left border p-2">
               {moment(el.author.createdAt).format("L")}
+            </td>
+            <td className="text-left border p-2">
+              <a
+                href={
+                  el.sharedLinks.length
+                    ? el.sharedLinks[0].link && el.sharedLinks[0].link
+                    : null
+                }
+                target="_blank"
+                rel="noreferrer"
+                className="underline"
+              >
+                {el.sharedLinks.length
+                  ? el.sharedLinks[0].link && "Link"
+                  : null}
+              </a>
             </td>
             <td className="text-left border p-2">
               {adminReducer.user.role === "admin"

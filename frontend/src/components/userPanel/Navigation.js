@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
-import { useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { isAuthenticate } from "../../store/actions/userAction";
+import { isAuthenticate, logout } from "../../store/actions/userAction";
 import Logo from "../../assets/images/logo.png";
 
 export default function Navigation() {
   const dispatch = useDispatch();
+
+  const userReducer = useSelector((store) => store.userReducer);
 
   useEffect(() => {
     dispatch(isAuthenticate());
@@ -31,7 +33,12 @@ export default function Navigation() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between">
-                <Link className="flex-shrink-0 flex items-center" to="/">
+                <a
+                  className="flex-shrink-0 flex items-center"
+                  href="https://monomousumi.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <img
                     className="block lg:hidden h-8 w-auto"
                     src={Logo}
@@ -42,7 +49,7 @@ export default function Navigation() {
                     src={Logo}
                     alt=""
                   />
-                </Link>
+                </a>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     <NavLink
@@ -85,6 +92,25 @@ export default function Navigation() {
                     >
                       CERTIFICATE
                     </NavLink>
+                    {userReducer.isAuthenticate ? (
+                      <div
+                        className="text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                        onClick={() => dispatch(logout())}
+                      >
+                        LOGOUT
+                      </div>
+                    ) : (
+                      <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-gray-50 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                            : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        }
+                      >
+                        LOGIN
+                      </NavLink>
+                    )}
                   </div>
                 </div>
               </div>

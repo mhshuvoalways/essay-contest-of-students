@@ -98,7 +98,7 @@ const articleReudcer = (state = init, action) => {
         error: action.payload,
       };
     }
-    
+
     case Types.MODAL_TOGGLE: {
       return {
         ...state,
