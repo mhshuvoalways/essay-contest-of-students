@@ -51,6 +51,7 @@ const articlesSchema = new Schema(
     },
     sharedLinks: [
       {
+        _id: String,
         link: String,
       },
     ],

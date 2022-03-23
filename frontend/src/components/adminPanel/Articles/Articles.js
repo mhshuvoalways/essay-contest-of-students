@@ -60,20 +60,18 @@ const Articles = ({ modalHandler, search, language }) => {
               {moment(el.author.createdAt).format("L")}
             </td>
             <td className="text-left border p-2">
-              <a
-                href={
-                  el.sharedLinks.length
-                    ? el.sharedLinks[0].link && el.sharedLinks[0].link
-                    : null
-                }
-                target="_blank"
-                rel="noreferrer"
-                className="underline"
-              >
-                {el.sharedLinks.length
-                  ? el.sharedLinks[0].link && "Link"
-                  : null}
-              </a>
+              {el.sharedLinks.length
+                ? el.sharedLinks.map((el) => (
+                    <a
+                      href={el.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline block mt-1"
+                    >
+                      {el.link ? "Link" : null}
+                    </a>
+                  ))
+                : null}
             </td>
             <td className="text-left border p-2">
               {adminReducer.user.role === "admin"

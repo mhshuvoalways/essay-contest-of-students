@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { articleUpdate } from "../../../store/actions/articleAction";
 import enableBtn from "../../../store/actions/enableBtnAction";
+import shortid from "shortid";
 
 const Marks = ({ id, articleReducer }) => {
   const [state, setState] = useState({
     marks: "",
-    link: "",
+    option: [
+      {
+        _id: shortid.generate(),
+        link: "",
+      },
+    ],
   });
 
   const dispatch = useDispatch();
@@ -19,35 +25,93 @@ const Marks = ({ id, articleReducer }) => {
     if (adminUserReducer.user.role === "admin") {
       setState({
         marks: finalMarks.finalMarks && finalMarks.finalMarks,
-        link: finalMarks.sharedLinks.length
-          ? finalMarks.sharedLinks[0].link
-          : "",
+        option: finalMarks.sharedLinks.length
+          ? finalMarks.sharedLinks
+          : state.option,
       });
     }
-  }, [adminUserReducer.user.role, finalMarks]);
+  }, [
+    adminUserReducer.user.role,
+    finalMarks.finalMarks,
+    finalMarks.sharedLinks,
+    state.option,
+  ]);
 
-  const onChangeHandler = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value });
+  const onChangeHandler = (event, index) => {
+    const { option } = state;
+    option[index].link = event.target.value;
+    setState({ ...state, option });
+  };
+
+  const addOption = () => {
+    const { option } = state;
+    option.push({
+      _id: shortid.generate(),
+      link: "",
+    });
+    setState({
+      ...state,
+      option,
+    });
+  };
+
+  const deleteOption = (id) => {
+    const { option } = state;
+    const remover = option.filter((option) => option._id !== id);
+    setState({ ...state, option: remover });
+  };
+
+  const marksHandler = (event) => {
+    setState({ ...state, marks: event.target.value });
   };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    dispatch(articleUpdate(state, id));
+    dispatch(
+      articleUpdate(
+        {
+          marks: state.marks,
+          option: JSON.stringify(state.option),
+        },
+        id
+      )
+    );
     dispatch(enableBtn(false));
   };
 
   return (
     <form onSubmit={onSubmitHandler}>
       <div className="mb-2">
-        <label className="block mb-2">Give Link</label>
-        <input
-          className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          name="link"
-          placeholder="Give link"
-          onChange={onChangeHandler}
-          value={state.link}
-        />
+        <div className="flex justify-between">
+          <label className="block mb-2">Give Link</label>
+          <label
+            className="block mb-2 bg-red-600 text-white p-1 cursor-pointer hover:bg-gray-900"
+            onClick={addOption}
+          >
+            Add options
+          </label>
+        </div>
+        {state.option.map((el, index) => {
+          return (
+            <div className="flex gap-3 mt-5" key={index}>
+              <input
+                className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                name="link"
+                placeholder="Give link"
+                onChange={(event) => onChangeHandler(event, index)}
+                value={el.link}
+              />
+              <button
+                className="bg-red-600 text-white px-1 hover:bg-gray-900"
+                onClick={() => deleteOption(el._id)}
+                type="button"
+              >
+                Delete
+              </button>
+            </div>
+          );
+        })}
       </div>
       <div className="mb-2">
         <label className="block mb-2">Give mark</label>
@@ -56,7 +120,7 @@ const Marks = ({ id, articleReducer }) => {
           type="number"
           name="marks"
           placeholder="Give mark"
-          onChange={onChangeHandler}
+          onChange={marksHandler}
           value={state.marks}
         />
       </div>
