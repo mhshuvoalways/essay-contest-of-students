@@ -60,6 +60,16 @@ export default function Navigation() {
                           : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                       }
                     >
+                      HOME
+                    </NavLink>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-gray-50 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
+                    >
                       DASHBOARD
                     </NavLink>
                     <NavLink
