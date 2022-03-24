@@ -24,13 +24,25 @@ const Dashboard = () => {
     });
   });
 
+  let avgMarks = 0;
+  articleReducer.articles.map((article) => {
+    return (avgMarks = avgMarks + article.finalMarks);
+  });
+
+  let sharedArticle = 0;
+  articleReducer.articles.map((article) => {
+    return article.sharedLinks.forEach(() => {
+      return sharedArticle++;
+    });
+  });
+
   return (
     <div className="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto">
       <p className="text-3xl my-10 text-center">
         Hi {userReducer.user.name}, Your Achivements
       </p>
       <div className="flex justify-between gap-4 flex-wrap">
-        <div className="shadow-lg bg-gray-50 w-80 py-10 border">
+        <div className="shadow-lg bg-gray-50 w-72 py-10 border">
           <div className="flex items-center gap-5 justify-center">
             <i className="fa-solid fa-pen text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3 border-2"></i>
             <p className="text-2xl">ARTICLES</p>
@@ -39,22 +51,31 @@ const Dashboard = () => {
             {articleReducer.articles.length}
           </p>
         </div>
-        <div className="shadow-lg bg-gray-50 w-80 py-10 border">
+        <div className="shadow-lg bg-gray-50 w-72 py-10 border">
+          <div className="flex items-center gap-5 justify-center">
+            <i className="fa-solid fa-pen text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
+            <p className="text-2xl">AVG MARK</p>
+          </div>
+          <p className="text-2xl text-center">
+            {avgMarks / articleReducer.articles.length}
+          </p>
+        </div>
+        <div className="shadow-lg bg-gray-50 w-72 py-10 border">
           <div className="flex items-center gap-5 justify-center">
             <i className="fa-solid fa-crown text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
             <p className="text-2xl">AWARDS</p>
           </div>
           <p className="text-2xl text-center">0</p>
         </div>
-        <div className="shadow-lg bg-gray-50 w-80 py-10 border">
+        <div className="shadow-lg bg-gray-50 w-72 py-10 border">
           <div className="flex items-center gap-5 justify-center">
-            <i className="fa-solid fa-eye text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
-            <p className="text-2xl">ALL VIEWS</p>
+            <i className="fa-solid fa-crown text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
+            <p className="text-2xl">SHARED ARTICLES</p>
           </div>
-          <p className="text-2xl text-center">0</p>
+          <p className="text-2xl text-center">{sharedArticle}</p>
         </div>
       </div>
-      <p className="text-3xl my-28 text-center animationBg">
+      <p className="text-3xl mt-28 text-center animationBg">
         {quarterlyAnnounceReducer.data.toggleStartStop ? (
           isPaySubmitReducer.ispaysubmitObj.isPayment ? (
             <p className="border p-4">
