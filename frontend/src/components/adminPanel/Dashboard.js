@@ -23,24 +23,21 @@ const Dashboard = () => {
   }, [dispatch]);
 
   let story = 0;
-  // eslint-disable-next-line array-callback-return
-  articleReducer.articles.map((article) => {
+  articleReducer.articles.forEach((article) => {
     if (article.typeofArticle === "Story") {
       story++;
     }
   });
 
   let poems = 0;
-  // eslint-disable-next-line array-callback-return
-  articleReducer.articles.map((article) => {
+  articleReducer.articles.forEach((article) => {
     if (article.typeofArticle === "Poem") {
       poems++;
     }
   });
 
   let articles = 0;
-  // eslint-disable-next-line array-callback-return
-  articleReducer.articles.map((article) => {
+  articleReducer.articles.forEach((article) => {
     if (
       article.qya.quarterly === quarterlyAnnounceReducer.data.quarterly &&
       article.qya.year === quarterlyAnnounceReducer.data.year

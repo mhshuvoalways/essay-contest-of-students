@@ -105,6 +105,17 @@ function Sidebar({ children }) {
               <i class="fa-solid fa-pen"></i>
               <span>Articles</span>
             </NavLink>
+            <NavLink
+              to="/admin/awards"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
+                  : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
+              }
+            >
+              <i class="fa-solid fa-crown"></i>
+              <span>Awards</span>
+            </NavLink>
             {adminReducer.user.role === "admin" && (
               <>
                 <NavLink

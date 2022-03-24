@@ -1,0 +1,8 @@
+export const GIVE_AWARDS = "GIVE_AWARDS";
+export const GIVE_AWARDS_ERROR = "GIVE_AWARDS_ERROR";
+
+export const GET_AWARD = "GET_AWARD";
+export const GET_AWARD_ERROR = "GET_AWARD_ERROR";
+
+export const GET_ALL_AWARD = "GET_ALL_AWARD";
+export const GET_ALL_AWARD_ERROR = "GET_ALL_AWARD_ERROR";

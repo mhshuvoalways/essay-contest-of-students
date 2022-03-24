@@ -12,6 +12,7 @@ import Home from "../pages/userPanel/Home";
 import SubmitArticle from "../pages/userPanel/SubmitArticle";
 import DownloadCertificate from "../pages/userPanel/DownloadCertificate";
 import Result from "../pages/userPanel/Result";
+import AwardsUser from "../pages/userPanel/Awards";
 import ActiveAccount from "../pages/userPanel/ActiveAccount";
 import FindMail from "../pages/userPanel/FindMail";
 import CheckMsg from "../pages/userPanel/CheckMsg";
@@ -30,6 +31,7 @@ import FindMailAdmin from "../pages/adminPanel/FindMail";
 import CheckMsgAdmin from "../pages/adminPanel/CheckMsg";
 import ActiveAccountAdmin from "../pages/adminPanel/ActiveAccount";
 import ArticleDetails from "../pages/adminPanel/ArticleDetails";
+import Awards from "../pages/adminPanel/Awards";
 
 const Routers = () => {
   return (
@@ -78,6 +80,14 @@ const Routers = () => {
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="award"
+          element={
+            <RequireAuth>
+              <AwardsUser />
+            </RequireAuth>
+          }
+        ></Route>
 
         {/* Admin panel */}
         <Route path="admin/register" element={<RegisterAdmin />} />
@@ -110,6 +120,14 @@ const Routers = () => {
           element={
             <AdminRequireAuth>
               <Articles />
+            </AdminRequireAuth>
+          }
+        ></Route>
+        <Route
+          path="admin/awards"
+          element={
+            <AdminRequireAuth>
+              <Awards />
             </AdminRequireAuth>
           }
         ></Route>

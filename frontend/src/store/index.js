@@ -8,6 +8,7 @@ import gradeReducer from "./reducers/gradeReducer";
 import isPaySubmitReducer from "./reducers/isPaySubmitReducer";
 import enableBtnReducer from "./reducers/enableBtnReducer";
 import paymentReducer from "./reducers/paymentReducer";
+import awardReducer from "./reducers/awardReducer";
 
 import alertReducer from "./reducers/alertReducer";
 import thunk from "redux-thunk";
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   enableBtnReducer,
   alertReducer,
   paymentReducer,
+  awardReducer,
 });
 
 const store = createStore(rootReducer, composedEnhancers);

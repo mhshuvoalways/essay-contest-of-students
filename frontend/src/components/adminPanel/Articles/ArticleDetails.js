@@ -32,6 +32,10 @@ const ArticleDetails = () => {
             <p>{articleReducer.author.phone}</p>
           </div>
           <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
+            <p className="w-28">Age:</p>
+            <p>{articleReducer.author.age}</p>
+          </div>
+          <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
             <p className="w-28">Language:</p>
             <p>{articleReducer.language}</p>
           </div>

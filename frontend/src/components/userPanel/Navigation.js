@@ -83,6 +83,16 @@ export default function Navigation() {
                       RESULT
                     </NavLink>
                     <NavLink
+                      to="/award"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-gray-50 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
+                    >
+                      AWARD
+                    </NavLink>
+                    <NavLink
                       to="/certificate"
                       className={({ isActive }) =>
                         isActive
@@ -151,6 +161,17 @@ export default function Navigation() {
                 }
               >
                 RESULT
+              </NavLink>
+              <NavLink
+                as="a"
+                to="/award"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-gray-50 bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    : "text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                }
+              >
+                AWARDS
               </NavLink>
               <NavLink
                 as="a"

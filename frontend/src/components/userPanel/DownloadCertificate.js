@@ -23,7 +23,7 @@ const DownloadCertificate = () => {
   ];
 
   return (
-    <div className="mt-12 max-w-xl sm:p-6 lg:p-8 m-auto md:mb-80 mb-64 shadow-md p-10 rounded-md bg-gray-50">
+    <div className="mt-12 max-w-xl sm:p-6 lg:p-8 m-auto md:mb-64 mb-28 shadow-md p-10 rounded-md bg-gray-50">
       <div>
         <label
           className="block uppercase tracking-wide text-gray-700 text-2xs font-bold mb-2"
