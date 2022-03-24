@@ -79,9 +79,9 @@ export const gradeDelete = (id) => (dispatch) => {
     });
 };
 
-export const modalToggle = (id) => (dispatch) => {
+export const modalToggle = (value, id) => (dispatch) => {
   dispatch({
-    type: Types.MODAL_TOGGLE,
-    payload: id,
+    type: Types.MODAL_TOGGLE_GRADE,
+    payload: { value, id },
   });
 };

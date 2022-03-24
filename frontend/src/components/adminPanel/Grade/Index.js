@@ -12,8 +12,8 @@ const Index = () => {
   const dispatch = useDispatch();
   const gradeReducer = useSelector((store) => store.gradeReducer);
 
-  const modalHandler = () => {
-    dispatch(modalToggle());
+  const modalHandler = (value) => {
+    dispatch(modalToggle(value));
   };
 
   const onChangeHandler = (event) => {
@@ -23,23 +23,24 @@ const Index = () => {
   return (
     <div>
       <Filter modalHandler={modalHandler} onChangeHandler={onChangeHandler} />
-      {gradeReducer.updateId ? (
-        <Modal
-          modal={gradeReducer.modal}
-          modalHandler={modalHandler}
-          title="Update Grade"
-        >
-          <GradeUpdate />
-        </Modal>
-      ) : (
-        <Modal
-          modal={gradeReducer.modal}
-          modalHandler={modalHandler}
-          title="Add Grade"
-        >
-          <GradeInput />
-        </Modal>
-      )}
+      {gradeReducer.modal &&
+        (gradeReducer.updateId ? (
+          <Modal
+            modal={gradeReducer.modal}
+            modalHandler={modalHandler}
+            title="Update Grade"
+          >
+            <GradeUpdate />
+          </Modal>
+        ) : (
+          <Modal
+            modal={gradeReducer.modal}
+            modalHandler={modalHandler}
+            title="Add Grade"
+          >
+            <GradeInput />
+          </Modal>
+        ))}
 
       <GradeSelection value={value} />
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { modalToggle } from "../../../store/actions/gradeAction";
 
-const Filter = ({onChangeHandler}) => {
+const Filter = ({ onChangeHandler }) => {
   const dispatch = useDispatch();
 
   return (
@@ -10,7 +10,7 @@ const Filter = ({onChangeHandler}) => {
       <div>
         <p
           className="bg-red-600 hover:bg-gray-900 text-white cursor-pointer p-2"
-          onClick={() => dispatch(modalToggle())}
+          onClick={() => dispatch(modalToggle(true))}
         >
           + Add Grade
         </p>

@@ -94,7 +94,7 @@ const Articles = ({ modalHandler, search, language }) => {
                   </Link>
                   <i
                     className="fa-solid fa-pen-to-square cursor-pointer"
-                    onClick={() => modalHandler(el._id)}
+                    onClick={() => modalHandler(true, el._id)}
                   ></i>
                   <i
                     className="fa-solid fa-trash-can cursor-pointer"

@@ -13,9 +13,9 @@ const Index = () => {
   const dispatch = useDispatch();
   const articleReducer = useSelector((store) => store.articleReducer);
 
-  const modalHandler = (id) => {
+  const modalHandler = (value, id) => {
     setId(id);
-    dispatch(modalToggle());
+    dispatch(modalToggle(value));
   };
 
   const changeHandler = (event) => {
@@ -28,22 +28,21 @@ const Index = () => {
 
   return (
     <div>
-      <Filter
-        changeHandler={changeHandler}
-        selectHandler={selectHandler}
-      />
+      <Filter changeHandler={changeHandler} selectHandler={selectHandler} />
       <Articles
         modalHandler={modalHandler}
         search={search}
         language={language}
       />
-      <Modal
-        modal={articleReducer.modal}
-        modalHandler={modalHandler}
-        title="Marks"
-      >
-        <Marks id={id} articleReducer={articleReducer} />
-      </Modal>
+      {articleReducer.modal && (
+        <Modal
+          modal={articleReducer.modal}
+          modalHandler={modalHandler}
+          title="Links And Marks"
+        >
+          <Marks id={id} articleReducer={articleReducer} />
+        </Modal>
+      )}
     </div>
   );
 };

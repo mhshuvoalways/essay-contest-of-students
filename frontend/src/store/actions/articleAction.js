@@ -36,7 +36,7 @@ export const articleUpdate = (article, id) => (dispatch) => {
         type: Types.UPDATE_ARTICLE,
         payload: response.data,
       });
-      dispatch(modalToggle());
+      dispatch(modalToggle(false));
       dispatch(enableBtn(true));
     })
     .catch((err) => {
@@ -44,6 +44,7 @@ export const articleUpdate = (article, id) => (dispatch) => {
         type: Types.UPDATE_ARTICLE_ERROR,
         payload: err.response.data,
       });
+      dispatch(modalToggle(false));
       dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.message));
     });
@@ -121,8 +122,9 @@ export const getIndividualActicle = (id) => (dispatch) => {
     });
 };
 
-export const modalToggle = () => (dispatch) => {
+export const modalToggle = (value) => (dispatch) => {
   dispatch({
     type: Types.MODAL_TOGGLE,
+    payload: value,
   });
 };

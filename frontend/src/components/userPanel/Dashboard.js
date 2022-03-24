@@ -44,14 +44,14 @@ const Dashboard = () => {
             <i className="fa-solid fa-crown text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
             <p className="text-2xl">AWARDS</p>
           </div>
-          <p className="text-2xl text-center">3</p>
+          <p className="text-2xl text-center">0</p>
         </div>
         <div className="shadow-lg bg-gray-50 w-80 py-10 border">
           <div className="flex items-center gap-5 justify-center">
             <i className="fa-solid fa-eye text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
             <p className="text-2xl">ALL VIEWS</p>
           </div>
-          <p className="text-2xl text-center">90</p>
+          <p className="text-2xl text-center">0</p>
         </div>
       </div>
       <p className="text-3xl my-28 text-center animationBg">
@@ -66,7 +66,9 @@ const Dashboard = () => {
             <p className="border p-4">Pay, Submit and Win Awards!</p>
           )
         ) : (
-          <p className="border p-4">Quarterly Will Be Start Soon!</p>
+          <p className="border p-4">
+            Quarterly Will Be Start Soon. Stay With Us!
+          </p>
         )}
       </p>
     </div>

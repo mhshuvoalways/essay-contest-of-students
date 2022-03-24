@@ -102,7 +102,7 @@ const articleReudcer = (state = init, action) => {
     case Types.MODAL_TOGGLE: {
       return {
         ...state,
-        modal: !state.modal,
+        modal: action.payload,
       };
     }
 

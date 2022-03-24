@@ -21,6 +21,7 @@ const articleReudcer = (state = init, action) => {
     case Types.ADD_GRADE_ERROR: {
       return {
         ...state,
+        modal: false,
         error: action.payload,
       };
     }
@@ -52,6 +53,7 @@ const articleReudcer = (state = init, action) => {
     case Types.UPDATE_GRADE_ERROR: {
       return {
         ...state,
+        modal: false,
         error: action.payload,
       };
     }
@@ -72,11 +74,11 @@ const articleReudcer = (state = init, action) => {
       };
     }
 
-    case Types.MODAL_TOGGLE: {
+    case Types.MODAL_TOGGLE_GRADE: {
       return {
         ...state,
-        modal: !state.modal,
-        updateId: action.payload,
+        modal: action.payload.value,
+        updateId: action.payload.id,
       };
     }
 

@@ -36,7 +36,7 @@ const GradeSelection = ({ value }) => {
             <td className="text-left border p-2 flex gap-4 flex-wrap justify-between">
               <i
                 class="fa-solid fa-pen-to-square cursor-pointer"
-                onClick={() => dispatch(modalToggle(grade._id))}
+                onClick={() => dispatch(modalToggle(true, grade._id))}
               ></i>
               <i
                 class="fa-solid fa-trash-can cursor-pointer"
