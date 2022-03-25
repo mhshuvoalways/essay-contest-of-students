@@ -153,13 +153,14 @@ function Sidebar({ children }) {
                 </NavLink>
               </>
             )}
-            <div
-              className="flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white cursor-pointer"
+            <a
+              href="/admin/login"
+              className="flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
               onClick={() => dispatch(logout())}
             >
               <i class="fa-solid fa-right-from-bracket"></i>
               <span>Logout</span>
-            </div>
+            </a>
           </div>
         </div>
       </aside>

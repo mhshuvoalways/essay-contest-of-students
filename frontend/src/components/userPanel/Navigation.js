@@ -113,12 +113,13 @@ export default function Navigation() {
                       PORTFOLIO
                     </NavLink>
                     {userReducer.isAuthenticate ? (
-                      <div
-                        className="text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+                      <a
+                        href="/login"
+                        className="text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         onClick={() => dispatch(logout())}
                       >
                         LOGOUT
-                      </div>
+                      </a>
                     ) : (
                       <NavLink
                         to="/login"
@@ -194,6 +195,38 @@ export default function Navigation() {
               >
                 CERTIFICATE
               </NavLink>
+              <NavLink
+                as="a"
+                to="/portfolio"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-gray-50 bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    : "text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                }
+              >
+                PORTFOLIO
+              </NavLink>
+              {userReducer.isAuthenticate ? (
+                <a
+                  href="/login"
+                  className="text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  onClick={() => dispatch(logout())}
+                >
+                  LOGOUT
+                </a>
+              ) : (
+                <NavLink
+                  as="a"
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-gray-50 bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      : "text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  }
+                >
+                  LOGIN
+                </NavLink>
+              )}
             </div>
           </Disclosure.Panel>
         </>

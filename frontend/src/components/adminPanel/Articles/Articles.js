@@ -107,6 +107,9 @@ const Articles = ({ modalHandler, search, language }) => {
               </>
             ) : (
               <td className="text-left border p-2 flex gap-2 flex-wrap justify-between">
+                <Link to={`/admin/article/${el._id}`}>
+                  <i className="fa-solid fa-eye"></i>
+                </Link>
                 <i
                   className="fa-solid fa-pen-to-square cursor-pointer"
                   onClick={() => modalHandler(true, el._id)}

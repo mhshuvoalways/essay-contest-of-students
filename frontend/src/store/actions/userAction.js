@@ -197,7 +197,7 @@ export const freshData = () => (dispatch) => {
   });
 };
 
-export const logout = (navigate) => (dispatch) => {
+export const logout = () => (dispatch) => {
   dispatch({
     type: Types.LOGOUT_USER,
     payload: {
@@ -206,5 +206,4 @@ export const logout = (navigate) => (dispatch) => {
   });
   localStorage.removeItem("token");
   setAuthToken("");
-  navigate("/login");
 };
