@@ -140,6 +140,17 @@ function Sidebar({ children }) {
                   <i class="fa-solid fa-bullhorn"></i>
                   <span>Announce Result</span>
                 </NavLink>
+                <NavLink
+                  to="/admin/approve"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
+                      : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
+                  }
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span>Account Manage</span>
+                </NavLink>
               </>
             )}
             <div

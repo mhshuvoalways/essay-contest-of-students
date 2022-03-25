@@ -19,4 +19,10 @@ export const FIND_MAIL_ERROR = "FIND_MAIL_ERROR";
 export const RECOVER_PASS = "RECOVER_PASS";
 export const RECOVER_PASS_ERROR = "RECOVER_PASS_ERROR";
 
+export const APPROVED = "APPROVED";
+export const APPROVED_ERROR = "APPROVED_ERROR";
+
+export const DELETE_JUDGE = "DELETE_JUDGE";
+export const DELETE_JUDGE_ERROR = "DELETE_JUDGE_ERROR";
+
 export const FRESH_USER = "FRESH_USER";

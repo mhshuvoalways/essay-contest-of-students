@@ -47,10 +47,41 @@ const userReudcer = (state = init, action) => {
     case Types.GETALLUSER: {
       return {
         ...state,
-        allUser: action.payload,
+        allUser: action.payload.filter((el) => el.role === "judge"),
       };
     }
     case Types.GETALLUSER_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+
+    case Types.APPROVED: {
+      const temp = [...state.allUser];
+      const findIndex = temp.findIndex((el) => el._id === action.payload._id);
+      temp[findIndex] = action.payload;
+      return {
+        ...state,
+        allUser: temp,
+      };
+    }
+    case Types.APPROVED_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+
+    case Types.DELETE_JUDGE: {
+      const temp = [...state.allUser];
+      const findDeleteUser = temp.filter((el) => el._id !== action.payload._id);
+      return {
+        ...state,
+        allUser: findDeleteUser,
+      };
+    }
+    case Types.DELETE_JUDGE_ERROR: {
       return {
         ...state,
         error: action.payload,

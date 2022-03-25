@@ -175,7 +175,7 @@ export const adminIsAuthenticate = () => (dispatch) => {
 
 export const getAllUser = () => (dispatch) => {
   axios
-    .get("/user/getalluser")
+    .get("/adminuser/alluser")
     .then((response) => {
       dispatch({
         type: Types.GETALLUSER,
@@ -187,6 +187,47 @@ export const getAllUser = () => (dispatch) => {
         type: Types.GETALLUSER_ERROR,
         payload: err.response.data,
       });
+      dispatch(alertAction(err.response.data.message));
+    });
+};
+
+export const approvedJudge = (id) => (dispatch) => {
+  axios
+    .put("/adminuser/approve/" + id)
+    .then((response) => {
+      dispatch({
+        type: Types.APPROVED,
+        payload: response.data.response,
+      });
+      dispatch(enableBtn(true));
+      dispatch(alertAction(response.data.message));
+    })
+    .catch((err) => {
+      dispatch({
+        type: Types.APPROVED_ERROR,
+        payload: err.response.data,
+      });
+      dispatch(enableBtn(true));
+      dispatch(alertAction(err.response.data.message));
+    });
+};
+
+export const deleteJudge = (id) => (dispatch) => {
+  axios
+    .delete("/adminuser/delete/" + id)
+    .then((response) => {
+      dispatch({
+        type: Types.DELETE_JUDGE,
+        payload: response.data,
+      });
+      dispatch(enableBtn(true));
+    })
+    .catch((err) => {
+      dispatch({
+        type: Types.DELETE_JUDGE_ERROR,
+        payload: err.response.data,
+      });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.message));
     });
 };

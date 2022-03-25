@@ -33,6 +33,7 @@ import CheckMsgAdmin from "../pages/adminPanel/CheckMsg";
 import ActiveAccountAdmin from "../pages/adminPanel/ActiveAccount";
 import ArticleDetails from "../pages/adminPanel/ArticleDetails";
 import Awards from "../pages/adminPanel/Awards";
+import JudgeApproved from "../pages/adminPanel/JudgeApproved";
 
 const Routers = () => {
   return (
@@ -146,6 +147,14 @@ const Routers = () => {
           element={
             <AdminRequireAuth>
               <AnnounceResult />
+            </AdminRequireAuth>
+          }
+        ></Route>
+        <Route
+          path="admin/approve"
+          element={
+            <AdminRequireAuth>
+              <JudgeApproved />
             </AdminRequireAuth>
           }
         ></Route>

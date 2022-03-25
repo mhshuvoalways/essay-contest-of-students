@@ -37,13 +37,14 @@ const register = (req, res) => {
                 { expiresIn: "1h" }
               );
               transporter(email, adminActiveAccount, name, token);
-              if (process.env.node_mailer_user === email) {
+              if (process.env.admin_user === email) {
                 const user = {
                   email,
                   name,
                   password: hash,
                   role: "admin",
                   phone,
+                  isApproved: true,
                 };
                 new User(user)
                   .save()
@@ -99,31 +100,41 @@ const login = (req, res) => {
       .then((response) => {
         if (response) {
           if (response.isActive) {
-            bcrypt.compare(password, response.password, function (err, result) {
-              if (result) {
-                const token = jwt.sign(
-                  {
-                    _id: response._id,
-                    email: response.email,
-                    name: response.name,
-                    role: response.role,
-                  },
-                  process.env.SECRET,
-                  { expiresIn: "10h" }
-                );
-                res.status(200).json({
-                  message: "Welcome!",
-                  token,
-                });
-              } else {
-                res.status(400).json({
-                  message: "Password doesn't match!",
-                });
-              }
-              if (err) {
-                serverError(res);
-              }
-            });
+            if (response.isApproved) {
+              bcrypt.compare(
+                password,
+                response.password,
+                function (err, result) {
+                  if (result) {
+                    const token = jwt.sign(
+                      {
+                        _id: response._id,
+                        email: response.email,
+                        name: response.name,
+                        role: response.role,
+                      },
+                      process.env.SECRET,
+                      { expiresIn: "10h" }
+                    );
+                    res.status(200).json({
+                      message: "Welcome!",
+                      token,
+                    });
+                  } else {
+                    res.status(400).json({
+                      message: "Password doesn't match!",
+                    });
+                  }
+                  if (err) {
+                    serverError(res);
+                  }
+                }
+              );
+            } else {
+              res.status(400).json({
+                message: "Please contact your admin to approve your account!",
+              });
+            }
           } else {
             res.status(400).json({
               message: "Please active your account and try again",
@@ -250,10 +261,49 @@ const recoverPassword = (req, res) => {
   }
 };
 
+const getAllUser = (req, res) => {
+  User.find()
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
+const judgeApprove = (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.params.id },
+    { isApproved: true },
+    { new: true }
+  )
+    .then((response) => {
+      res
+        .status(200)
+        .json({ response, message: "You have appproved to " + response.name });
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
+const deleteUserJudge = (req, res) => {
+  User.findOneAndDelete({ _id: req.params.id })
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch(() => {
+      serverError(res);
+    });
+};
+
 module.exports = {
   register,
   login,
   activeAccountController,
   findMail,
   recoverPassword,
+  getAllUser,
+  judgeApprove,
+  deleteUserJudge,
 };
