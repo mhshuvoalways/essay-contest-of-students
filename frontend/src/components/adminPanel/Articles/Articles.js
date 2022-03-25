@@ -30,7 +30,7 @@ const Articles = ({ modalHandler, search, language }) => {
 
   return (
     <div className="shadow-sm bg-gray-50 border overflow-x-auto">
-      <table id="table-to-xls">
+      <table id="table-to-xls" className="w-full">
         <tr>
           <th className="text-left border px-2 py-3 ">Name</th>
           <th className="text-left border px-2 py-3">Email</th>
@@ -38,11 +38,12 @@ const Articles = ({ modalHandler, search, language }) => {
           <th className="text-left border px-2 py-3">Language</th>
           <th className="text-left border px-2 py-3">Type of Article</th>
           <th className="text-left border px-2 py-3">Date</th>
-          <th className="text-left border px-2 py-3">Links</th>
+          {adminReducer.user.role === "admin" && (
+            <th className="text-left border px-2 py-3">Links</th>
+          )}
           <th className="text-left border px-2 py-3 w-12">Avg Marks</th>
           {adminReducer.user.role === "admin" && (
             <>
-              {" "}
               <th className="text-left border px-2 py-3 w-12">Marks</th>
               <th className="text-left border px-2 py-3 w-12">Grade</th>
             </>
@@ -59,20 +60,22 @@ const Articles = ({ modalHandler, search, language }) => {
             <td className="text-left border p-2">
               {moment(el.author.createdAt).format("L")}
             </td>
-            <td className="text-left border p-2">
-              {el.sharedLinks.length
-                ? el.sharedLinks.map((el) => (
-                    <a
-                      href={el.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline block mt-1"
-                    >
-                      {el.link ? "Link" : null}
-                    </a>
-                  ))
-                : null}
-            </td>
+            {adminReducer.user.role === "admin" && (
+              <td className="text-left border p-2">
+                {el.sharedLinks.length
+                  ? el.sharedLinks.map((el) => (
+                      <a
+                        href={el.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline block mt-1"
+                      >
+                        {el.link ? "Link" : null}
+                      </a>
+                    ))
+                  : null}
+              </td>
+            )}
             <td className="text-left border p-2">
               {adminReducer.user.role === "admin"
                 ? el.finalAvg === 0
@@ -106,7 +109,7 @@ const Articles = ({ modalHandler, search, language }) => {
               <td className="text-left border p-2 flex gap-2 flex-wrap justify-between">
                 <i
                   className="fa-solid fa-pen-to-square cursor-pointer"
-                  onClick={() => modalHandler(el._id)}
+                  onClick={() => modalHandler(true, el._id)}
                 ></i>
               </td>
             )}

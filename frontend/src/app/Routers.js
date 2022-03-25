@@ -8,7 +8,6 @@ import Alert from "../components/utils/Tostify";
 import RequireAuth from "./RequireAuth";
 import Register from "../pages/userPanel/Register";
 import Login from "../pages/userPanel/Login";
-import HomeUser from "../pages/userPanel/Home";
 import DashboardUser from "../pages/userPanel/Dashboard";
 import SubmitArticle from "../pages/userPanel/SubmitArticle";
 import DownloadCertificate from "../pages/userPanel/DownloadCertificate";
@@ -46,13 +45,12 @@ const Routers = () => {
         <Route path="active/:token" element={<ActiveAccount />}></Route>
         <Route path="findmail" element={<FindMail />}></Route>
         <Route path="checkmsg" element={<CheckMsg />}></Route>
-        <Route path="" element={<HomeUser />}></Route>
         <Route
           path="recoverpassword/:token"
           element={<RecoverPassword />}
         ></Route>
         <Route
-          path="dashboard"
+          path=""
           element={
             <RequireAuth>
               <DashboardUser />

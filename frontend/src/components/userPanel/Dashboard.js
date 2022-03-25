@@ -53,7 +53,9 @@ const Dashboard = () => {
             <p className="text-2xl">ARTICLES</p>
           </div>
           <p className="text-2xl text-center">
-            {articleReducer.articles.length || 0}
+            {articleReducer.articles.length
+              ? articleReducer.articles.length
+              : 0}
           </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">
@@ -62,7 +64,9 @@ const Dashboard = () => {
             <p className="text-2xl">AVG MARK</p>
           </div>
           <p className="text-2xl text-center">
-            {avgMarks / articleReducer.articles.length || 0}
+            {avgMarks / articleReducer.articles.length
+              ? avgMarks / articleReducer.articles.length
+              : 0}
           </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">
@@ -70,7 +74,9 @@ const Dashboard = () => {
             <i className="fa-solid fa-pen text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
             <p className="text-2xl">SHARED ARTICLES</p>
           </div>
-          <p className="text-2xl text-center">{sharedArticle || 0}</p>
+          <p className="text-2xl text-center">
+            {sharedArticle ? sharedArticle : 0}
+          </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">
           <div className="flex items-center gap-5 justify-center">
@@ -78,7 +84,7 @@ const Dashboard = () => {
             <p className="text-2xl">AWARDS</p>
           </div>
           <p className="text-2xl text-center">
-            {awardReducer.award.length || 0}
+            {awardReducer.award.length ? awardReducer.award.length : 0}
           </p>
         </div>
       </div>

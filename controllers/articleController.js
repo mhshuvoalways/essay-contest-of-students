@@ -128,10 +128,14 @@ const updateArticle = (req, res) => {
           (el) => el.author.toString() === req.user._id
         );
         if (findUser) {
+          const findAndPush = response.avgMarks.filter(
+            (ela) => ela.author.toString() !== req.user._id
+          );
           const marks = { author: req.user._id, marks: req.body.marks };
+          findAndPush.push(marks);
           Article.findOneAndUpdate(
-            { "avgMarks.author": req.user._id },
-            { avgMarks: marks },
+            { _id: id },
+            { avgMarks: findAndPush },
             { new: true }
           )
             .then((response) => {

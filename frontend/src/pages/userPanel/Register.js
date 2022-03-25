@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "../../components/userPanel/Navigation";
-import Register from "../../components/userPanel/auth/Register";
+import Register from "../../components/userPanel/auth/register";
 import Footer from "../../components/userPanel/Footer";
 
 const RegisterComponent = () => {

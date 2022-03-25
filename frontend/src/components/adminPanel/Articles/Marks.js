@@ -29,9 +29,18 @@ const Marks = ({ id, articleReducer }) => {
           ? finalMarks.sharedLinks
           : state.option,
       });
+    } else {
+      const find = finalMarks.avgMarks.find(
+        (el) => el.author === adminUserReducer.user._id
+      );
+      setState({
+        marks: finalMarks.avgMarks.length && find.marks,
+      });
     }
   }, [
+    adminUserReducer.user._id,
     adminUserReducer.user.role,
+    finalMarks.avgMarks,
     finalMarks.finalMarks,
     finalMarks.sharedLinks,
     state.option,
@@ -81,38 +90,41 @@ const Marks = ({ id, articleReducer }) => {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <div className="mb-2">
-        <div className="flex justify-between">
-          <label className="block mb-2">Give Link</label>
-          <label
-            className="block mb-2 bg-red-600 text-white p-1 cursor-pointer hover:bg-gray-900"
-            onClick={addOption}
-          >
-            Add options
-          </label>
+      {adminUserReducer.user.role === "admin" && (
+        <div className="mb-2">
+          <div className="flex justify-between">
+            <label className="block mb-2">Give Link</label>
+            <label
+              className="block mb-2 bg-red-600 text-white p-1 cursor-pointer hover:bg-gray-900"
+              onClick={addOption}
+            >
+              Add options
+            </label>
+          </div>
+          {state.option.map((el, index) => {
+            return (
+              <div className="flex gap-3 mt-5" key={index}>
+                <input
+                  className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                  type="text"
+                  name="link"
+                  placeholder="Give link"
+                  onChange={(event) => onChangeHandler(event, index)}
+                  value={el.link}
+                />
+                <button
+                  className="bg-red-600 text-white px-1 hover:bg-gray-900"
+                  onClick={() => deleteOption(el._id)}
+                  type="button"
+                >
+                  Delete
+                </button>
+              </div>
+            );
+          })}
         </div>
-        {state.option.map((el, index) => {
-          return (
-            <div className="flex gap-3 mt-5" key={index}>
-              <input
-                className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                name="link"
-                placeholder="Give link"
-                onChange={(event) => onChangeHandler(event, index)}
-                value={el.link}
-              />
-              <button
-                className="bg-red-600 text-white px-1 hover:bg-gray-900"
-                onClick={() => deleteOption(el._id)}
-                type="button"
-              >
-                Delete
-              </button>
-            </div>
-          );
-        })}
-      </div>
+      )}
+
       <div className="mb-2">
         <label className="block mb-2">Give mark</label>
         <input

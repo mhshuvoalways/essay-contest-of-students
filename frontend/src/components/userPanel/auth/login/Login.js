@@ -7,8 +7,8 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import { userLogin } from "../../../store/actions/userAction";
-import enableBtn from "../../../store/actions/enableBtnAction";
+import { userLogin } from "../../../../store/actions/userAction";
+import enableBtn from "../../../../store/actions/enableBtnAction";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -60,20 +60,20 @@ const Login = () => {
   }
 
   return (
-    <div className="mt-12 max-w-md m-auto">
+    <div>
       <div className="flex justify-center mb-5">
         <NavLink
           to="/register"
           className={({ isActive }) => isActive && "text-purple-600"}
         >
-          <button className="py-2 mt-5 text-2xl font-bold">Register</button>
+          <button className="pb-2 text-2xl font-bold">Register</button>
         </NavLink>
-        <p className="py-2 mt-5 text-2xl mx-2">|</p>
+        <p className="pb-2 text-2xl mx-2">|</p>
         <NavLink
           to="/login"
           className={({ isActive }) => isActive && "text-purple-600"}
         >
-          <button className="py-2 mt-5 text-2xl font-bold">Login</button>
+          <button className="pb-2 text-2xl font-bold">Login</button>
         </NavLink>
       </div>
       <form onSubmit={onSubmit}>

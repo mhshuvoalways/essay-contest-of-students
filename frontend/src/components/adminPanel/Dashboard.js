@@ -66,7 +66,9 @@ const Dashboard = () => {
             <p className="text-2xl">USERS</p>
           </div>
           <p className="text-2xl text-center">
-            {adminUserReducer.allUser.length}
+            {adminUserReducer.allUser.length
+              ? adminUserReducer.allUser.length
+              : 0}
           </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">
@@ -81,7 +83,9 @@ const Dashboard = () => {
             <i className="fa-solid fa-money-bill text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
             <p className="text-2xl">PAYMENTS</p>
           </div>
-          <p className="text-2xl text-center">{paymentReducer.length}</p>
+          <p className="text-2xl text-center">
+            {paymentReducer.length ? paymentReducer.length : 0}
+          </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">
           <div className="flex items-center gap-5 justify-center">
