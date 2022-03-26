@@ -45,7 +45,12 @@ const Result = ({ downloadHandler }) => {
             <div className="grid">
               {article.sharedLinks.length ? (
                 article.sharedLinks.map((el) => (
-                  <a href={el.link} className="my-2 underline">
+                  <a
+                    href={el.link}
+                    className="my-2 underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {el.link}
                   </a>
                 ))

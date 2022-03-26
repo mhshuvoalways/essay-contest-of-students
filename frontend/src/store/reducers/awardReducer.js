@@ -8,10 +8,9 @@ const init = {
 const awardReudcer = (state = init, action) => {
   switch (action.type) {
     case Types.GIVE_AWARDS: {
-      const temp = [...state.award, action.payload];
       return {
         ...state,
-        award: temp,
+        award: action.payload,
         error: null,
       };
     }

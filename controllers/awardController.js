@@ -11,11 +11,18 @@ const giveAwards = (req, res) => {
       .then((findresponse) => {
         new Awards({ author: findresponse._id, awardName: award })
           .save()
-          .then((response) => {
-            res.status(200).json({
-              response,
-              message: "You give the award to " + findresponse.name,
-            });
+          .then((createResponse) => {
+            Awards.find()
+              .populate("author")
+              .then((response) => {
+                res.status(200).json({
+                  response,
+                  message: "You give the award to " + createResponse.name,
+                });
+              })
+              .catch(() => {
+                serverError(res);
+              });
           })
           .catch(() => {
             serverError(res);

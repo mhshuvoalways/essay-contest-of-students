@@ -73,7 +73,9 @@ const SubmitArticle = () => {
 
   return (
     <div className="mt-12 max-w-xl sm:p-6 lg:p-8 m-auto shadow-md p-10 rounded-md bg-gray-50">
-      {quarterlyAnnounceReducer.data.toggleStartStop ? (
+      {quarterlyAnnounceReducer.data &&
+      quarterlyAnnounceReducer.data.toggleStartStop ? (
+        isPaySubmitReducer.ispaysubmitObj &&
         isPaySubmitReducer.ispaysubmitObj.isPayment && (
           <p className="border p-4">
             You can submit{" "}

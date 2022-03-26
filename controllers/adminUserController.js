@@ -272,29 +272,34 @@ const getAllUser = (req, res) => {
 };
 
 const judgeApprove = (req, res) => {
-  User.findOneAndUpdate(
-    { _id: req.params.id },
-    { isApproved: true },
-    { new: true }
-  )
-    .then((response) => {
-      res
-        .status(200)
-        .json({ response, message: "You have appproved to " + response.name });
-    })
-    .catch(() => {
-      serverError(res);
-    });
+  if (req.user.role === "admin") {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      { isApproved: true },
+      { new: true }
+    )
+      .then((response) => {
+        res.status(200).json({
+          response,
+          message: "You have appproved to " + response.name,
+        });
+      })
+      .catch(() => {
+        serverError(res);
+      });
+  }
 };
 
 const deleteUserJudge = (req, res) => {
-  User.findOneAndDelete({ _id: req.params.id })
-    .then((response) => {
-      res.status(200).json(response);
-    })
-    .catch(() => {
-      serverError(res);
-    });
+  if (req.user.role === "admin") {
+    User.findOneAndDelete({ _id: req.params.id })
+      .then((response) => {
+        res.status(200).json(response);
+      })
+      .catch(() => {
+        serverError(res);
+      });
+  }
 };
 
 module.exports = {

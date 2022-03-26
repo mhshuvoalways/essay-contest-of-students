@@ -89,12 +89,16 @@ const Dashboard = () => {
         </div>
       </div>
       <p className="text-3xl mt-28 text-center animationBg">
-        {quarterlyAnnounceReducer.data.toggleStartStop ? (
+        {quarterlyAnnounceReducer.data &&
+        quarterlyAnnounceReducer.data.toggleStartStop ? (
+          isPaySubmitReducer.ispaysubmitObj &&
           isPaySubmitReducer.ispaysubmitObj.isPayment ? (
             <p className="border p-4">
               You can submit{" "}
-              {3 - isPaySubmitReducer.ispaysubmitObj.submissionCount} more times
-              out of 3 times
+              {3 -
+                (isPaySubmitReducer.ispaysubmitObj &&
+                  isPaySubmitReducer.ispaysubmitObj.submissionCount)}{" "}
+              more times out of 3 times
             </p>
           ) : (
             <p className="border p-4">Pay, Submit and Win Awards!</p>
