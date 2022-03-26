@@ -2,9 +2,10 @@ const nodemailer = require("nodemailer");
 
 module.exports = (sendto, templateName, name, link) => {
   const transporter = nodemailer.createTransport({
+    host: process.env.node_mailer_user,
     service: "gmail",
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.node_mailer_user,
       pass: process.env.node_mailer_password,
