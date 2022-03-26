@@ -10,7 +10,6 @@ import Register from "../pages/userPanel/Register";
 import Login from "../pages/userPanel/Login";
 import DashboardUser from "../pages/userPanel/Dashboard";
 import SubmitArticle from "../pages/userPanel/SubmitArticle";
-import DownloadCertificate from "../pages/userPanel/DownloadCertificate";
 import Result from "../pages/userPanel/Result";
 import AwardsUser from "../pages/userPanel/Awards";
 import ActiveAccount from "../pages/userPanel/ActiveAccount";
@@ -62,14 +61,6 @@ const Routers = () => {
           element={
             <RequireAuth>
               <SubmitArticle />
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
-          path="certificate"
-          element={
-            <RequireAuth>
-              <DownloadCertificate />
             </RequireAuth>
           }
         ></Route>

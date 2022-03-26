@@ -211,6 +211,7 @@ const getArticle = (req, res) => {
 
 const getMyArticle = (req, res) => {
   Article.find({ author: req.user._id })
+    .populate("author")
     .then((response) => {
       res.status(200).json(response);
     })

@@ -32,3 +32,5 @@ app.get("/", (req, res) => {
 });
 
 db(app);
+
+console.log("first award".split(" ").forEach((el) => el));

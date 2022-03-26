@@ -92,26 +92,6 @@ export default function Navigation() {
                     >
                       AWARD
                     </NavLink>
-                    <NavLink
-                      to="/certificate"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-gray-50 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                          : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                      }
-                    >
-                      CERTIFICATE
-                    </NavLink>
-                    <NavLink
-                      to="/portfoliodownload"
-                      className={({ isActive }) =>
-                        isActive
-                          ? "text-gray-50 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                          : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                      }
-                    >
-                      PORTFOLIO
-                    </NavLink>
                     {userReducer.isAuthenticate ? (
                       <a
                         href="/login"
@@ -183,28 +163,6 @@ export default function Navigation() {
                 }
               >
                 AWARDS
-              </NavLink>
-              <NavLink
-                as="a"
-                to="/certificate"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-gray-50 bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    : "text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                }
-              >
-                CERTIFICATE
-              </NavLink>
-              <NavLink
-                as="a"
-                to="/portfolio"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-gray-50 bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    : "text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                }
-              >
-                PORTFOLIO
               </NavLink>
               {userReducer.isAuthenticate ? (
                 <a

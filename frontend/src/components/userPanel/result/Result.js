@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyArticle } from "../../store/actions/articleAction";
+import { getMyArticle } from "../../../store/actions/articleAction";
 import parse from "html-react-parser";
 
-const Result = () => {
+const Result = ({ downloadHandler }) => {
   const dispatch = useDispatch();
   const articleReducer = useSelector((store) => store.articleReducer);
 
@@ -16,7 +16,10 @@ const Result = () => {
   return (
     <div className="mt-12 max-w-7xl px-4 sm:px-6 lg:px-8 m-auto">
       {reverseArticles.reverse().map((article) => (
-        <div className="border border-pink-500 bg-gray-50 p-10 mb-10">
+        <div
+          className="border border-pink-500 bg-gray-50 p-10 mb-10"
+          key={article._id}
+        >
           <div className="flex items-center gap-5 py-5 border-pink-800 border-b">
             <p className="w-28">Language:</p>
             <p>{article.language}</p>
@@ -55,6 +58,12 @@ const Result = () => {
             <p className="w-28">Article:</p>
             <p> {parse(article.article)}</p>
           </div>
+          <button
+            className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
+            onClick={() => downloadHandler(article.author.name, article.grade)}
+          >
+            DOWNLOAD CERTIFICATE
+          </button>
         </div>
       ))}
     </div>
