@@ -23,7 +23,7 @@ const Awards = ({ downloadHandler }) => {
               <td className="text-left border p-2">{el.awardName}</td>
               <td className="text-left border p-2">
                 <button
-                  className="bg-red-600 text-white py-2 w-full hover:bg-gray-900"
+                  className="bg-red-600 text-white py-1 w-full hover:bg-gray-900"
                   onClick={() => downloadHandler(el.author.name, el.awardName)}
                 >
                   DOWNLOAD AWARD

@@ -58,12 +58,16 @@ const Result = ({ downloadHandler }) => {
             <p className="w-28">Article:</p>
             <p> {parse(article.article)}</p>
           </div>
-          <button
-            className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
-            onClick={() => downloadHandler(article.author.name, article.grade)}
-          >
-            DOWNLOAD CERTIFICATE
-          </button>
+          {article.grade && (
+            <button
+              className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
+              onClick={() =>
+                downloadHandler(article.author.name, article.grade)
+              }
+            >
+              DOWNLOAD CERTIFICATE
+            </button>
+          )}
         </div>
       ))}
     </div>
