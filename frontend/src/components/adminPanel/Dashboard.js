@@ -46,6 +46,10 @@ const Dashboard = () => {
     }
   });
 
+  const isApproved =
+    adminUserReducer.allUser.length &&
+    adminUserReducer.allUser.filter((judge) => judge.isApproved);
+
   return (
     <div className="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto mb-72">
       <div className="flex justify-between gap-3 flex-wrap">
@@ -55,9 +59,7 @@ const Dashboard = () => {
             <p className="text-2xl">JUDGES</p>
           </div>
           <p className="text-2xl text-center">
-            {adminUserReducer.allUser.length
-              ? adminUserReducer.allUser.length
-              : 0}
+            {adminUserReducer.allUser.length ? isApproved.length : 0}
           </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">

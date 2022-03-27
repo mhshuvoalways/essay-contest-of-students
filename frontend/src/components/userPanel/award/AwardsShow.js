@@ -11,7 +11,7 @@ const Awards = ({ downloadHandler }) => {
   }, [dispatch]);
 
   return (
-    <div className="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto mt-12 md:mb-96 mb-32">
+    <div className="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto mt-12">
       <div className="shadow-sm bg-gray-50 border overflow-x-auto">
         <table className="w-full ">
           <tr>

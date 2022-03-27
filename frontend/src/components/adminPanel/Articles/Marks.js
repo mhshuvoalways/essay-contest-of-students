@@ -64,12 +64,6 @@ const Marks = ({ id, articleReducer }) => {
     });
   };
 
-  const deleteOption = (id) => {
-    const { option } = state;
-    const remover = option.filter((option) => option._id !== id);
-    setState({ ...state, option: remover });
-  };
-
   const marksHandler = (event) => {
     setState({ ...state, marks: event.target.value });
   };
@@ -112,13 +106,6 @@ const Marks = ({ id, articleReducer }) => {
                   onChange={(event) => onChangeHandler(event, index)}
                   value={el.link}
                 />
-                <button
-                  className="bg-red-600 text-white px-1 hover:bg-gray-900"
-                  onClick={() => deleteOption(el._id)}
-                  type="button"
-                >
-                  Delete
-                </button>
               </div>
             );
           })}

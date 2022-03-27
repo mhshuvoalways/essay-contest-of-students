@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getMyArticle } from "../../store/actions/articleAction";
 import { ispaysubmitGet } from "../../store/actions/isPaySubmitAction";
 import { getAward } from "../../store/actions/giveAwardAction";
+import { getAuthor } from "../../store/actions/authorAction";
 import { getQuarterAnnounce } from "../../store/actions/quarterlyAnnounceAction";
 
 const Dashboard = () => {
@@ -11,6 +12,7 @@ const Dashboard = () => {
   const articleReducer = useSelector((store) => store.articleReducer);
   const isPaySubmitReducer = useSelector((store) => store.isPaySubmitReducer);
   const awardReducer = useSelector((store) => store.awardReducer);
+  const authorReducer = useSelector((store) => store.authorReducer);
   const quarterlyAnnounceReducer = useSelector(
     (store) => store.quarterlyAnnounceReducer
   );
@@ -20,6 +22,7 @@ const Dashboard = () => {
     dispatch(ispaysubmitGet());
     dispatch(getQuarterAnnounce());
     dispatch(getAward());
+    dispatch(getAuthor());
   }, [dispatch]);
 
   let sum = 0;
@@ -85,6 +88,15 @@ const Dashboard = () => {
           </div>
           <p className="text-2xl text-center">
             {awardReducer.award.length ? awardReducer.award.length : 0}
+          </p>
+        </div>
+        <div className="shadow-lg bg-gray-50 w-72 py-10 border">
+          <div className="flex items-center gap-5 justify-center">
+            <i className="fa-solid fa-book text-xl bg-green-500 w-12 h-12 flex items-center pt-3 rounded-full border-gray-500 pl-3  border-2"></i>
+            <p className="text-2xl">Author Cert.</p>
+          </div>
+          <p className="text-2xl text-center">
+            {authorReducer.author.length ? authorReducer.author.length : 0}
           </p>
         </div>
       </div>

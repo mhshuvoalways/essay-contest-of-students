@@ -22,7 +22,7 @@ export const giveAuthor = (author) => (dispatch) => {
       dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.message));
       dispatch(alertAction(err.response.data.email));
-      dispatch(alertAction(err.response.data.award));
+      dispatch(alertAction(err.response.data.bookName));
     });
 };
 
