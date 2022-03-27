@@ -6,6 +6,9 @@ import parse from "html-react-parser";
 const Result = ({ downloadHandler }) => {
   const dispatch = useDispatch();
   const articleReducer = useSelector((store) => store.articleReducer);
+  const quarterlyAnnounceReducer = useSelector(
+    (store) => store.quarterlyAnnounceReducer
+  );
 
   useEffect(() => {
     dispatch(getMyArticle());
@@ -44,14 +47,14 @@ const Result = ({ downloadHandler }) => {
             <p className="w-28">Article has been shared:</p>
             <div className="grid">
               {article.sharedLinks.length ? (
-                article.sharedLinks.map((el) => (
+                article.sharedLinks.map((el, index) => (
                   <a
                     href={el.link}
                     className="my-2 underline"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {el.link}
+                    {`Link ${index + 1}`}
                   </a>
                 ))
               ) : (
@@ -63,7 +66,7 @@ const Result = ({ downloadHandler }) => {
             <p className="w-28">Article:</p>
             <p> {parse(article.article)}</p>
           </div>
-          {article.grade && (
+          {quarterlyAnnounceReducer.data.isAnnounce && article.grade && (
             <button
               className="bg-red-600 text-white py-2 mt-5 w-full hover:bg-gray-900"
               onClick={() =>
