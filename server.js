@@ -12,7 +12,8 @@ const gradeRouter = require("./routers/gradeRouter");
 const paymentRouter = require("./routers/paymentRouter");
 const isPaySubmitRouter = require("./routers/isPaySubmitRouter");
 const awardRouter = require("./routers/awardRouter");
-  
+const authorRouter = require("./routers/authorRouter");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -26,6 +27,7 @@ app.use("/grade", gradeRouter);
 app.use("/payment", paymentRouter);
 app.use("/ispaysubmit", isPaySubmitRouter);
 app.use("/award", awardRouter);
+app.use("/author", authorRouter);
 
 app.get("/", (req, res) => {
   res.send("A MERN stack monomousumicontest website");

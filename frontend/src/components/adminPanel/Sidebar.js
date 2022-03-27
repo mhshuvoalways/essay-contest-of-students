@@ -119,6 +119,17 @@ function Sidebar({ children }) {
                   <span>Awards</span>
                 </NavLink>
                 <NavLink
+                  to="/admin/author"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center space-x-2 py-2 px-4 transition duration-200 bg-gray-700 hover:text-white"
+                      : "flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white"
+                  }
+                >
+                  <i class="fa-solid fa-book"></i>
+                  <span>Author Certificate</span>
+                </NavLink>
+                <NavLink
                   to="/admin/grade"
                   className={({ isActive }) =>
                     isActive

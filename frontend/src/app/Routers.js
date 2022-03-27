@@ -12,6 +12,7 @@ import DashboardUser from "../pages/userPanel/Dashboard";
 import SubmitArticle from "../pages/userPanel/SubmitArticle";
 import Result from "../pages/userPanel/Result";
 import AwardsUser from "../pages/userPanel/Awards";
+import AuthorUser from "../pages/userPanel/Author";
 import ActiveAccount from "../pages/userPanel/ActiveAccount";
 import FindMail from "../pages/userPanel/FindMail";
 import CheckMsg from "../pages/userPanel/CheckMsg";
@@ -31,6 +32,7 @@ import CheckMsgAdmin from "../pages/adminPanel/CheckMsg";
 import ActiveAccountAdmin from "../pages/adminPanel/ActiveAccount";
 import ArticleDetails from "../pages/adminPanel/ArticleDetails";
 import Awards from "../pages/adminPanel/Awards";
+import Author from "../pages/adminPanel/Author";
 import JudgeApproved from "../pages/adminPanel/JudgeApproved";
 
 const Routers = () => {
@@ -80,6 +82,14 @@ const Routers = () => {
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="author"
+          element={
+            <RequireAuth>
+              <AuthorUser />
+            </RequireAuth>
+          }
+        ></Route>
 
         {/* Admin panel */}
         <Route path="admin/register" element={<RegisterAdmin />} />
@@ -120,6 +130,14 @@ const Routers = () => {
           element={
             <AdminRequireAuth>
               <Awards />
+            </AdminRequireAuth>
+          }
+        ></Route>
+        <Route
+          path="admin/author"
+          element={
+            <AdminRequireAuth>
+              <Author />
             </AdminRequireAuth>
           }
         ></Route>

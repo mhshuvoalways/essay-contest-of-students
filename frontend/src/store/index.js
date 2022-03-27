@@ -9,6 +9,7 @@ import isPaySubmitReducer from "./reducers/isPaySubmitReducer";
 import enableBtnReducer from "./reducers/enableBtnReducer";
 import paymentReducer from "./reducers/paymentReducer";
 import awardReducer from "./reducers/awardReducer";
+import authorReducer from "./reducers/authorReducer";
 
 import alertReducer from "./reducers/alertReducer";
 import thunk from "redux-thunk";
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   alertReducer,
   paymentReducer,
   awardReducer,
+  authorReducer,
 });
 
 const store = createStore(rootReducer, composedEnhancers);

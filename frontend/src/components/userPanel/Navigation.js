@@ -92,6 +92,16 @@ export default function Navigation() {
                     >
                       AWARD
                     </NavLink>
+                    <NavLink
+                      to="/author"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-gray-50 bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-50 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
+                    >
+                      AUTHOR CERTIFICATE
+                    </NavLink>
                     {userReducer.isAuthenticate ? (
                       <a
                         href="/login"
@@ -163,6 +173,17 @@ export default function Navigation() {
                 }
               >
                 AWARDS
+              </NavLink>
+              <NavLink
+                as="a"
+                to="/author"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-gray-50 bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    : "text-gray-50 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                }
+              >
+                AUTHOR CERTIFICATE
               </NavLink>
               {userReducer.isAuthenticate ? (
                 <a

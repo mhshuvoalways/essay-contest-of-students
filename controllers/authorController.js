@@ -1,24 +1,26 @@
 const User = require("../Model/User");
-const Awards = require("../Model/Awards");
+const Author = require("../Model/Author");
 const serverError = require("../utils/serverError");
-const articleValidator = require("../validations/awardValidation");
+const authorValidation = require("../validations/authorValidation");
 
-const giveAwards = (req, res) => {
-  const { email, award } = req.body;
-  const validation = articleValidator({ email, award });
+const giveAuthor = (req, res) => {
+  const { email, bookName } = req.body;
+  console.log(req.body);
+  const validation = authorValidation({ email, bookName });
   if (validation.isValid) {
     User.findOne({ email: email })
       .then((findresponse) => {
         if (findresponse) {
-          new Awards({ author: findresponse._id, awardName: award })
+          new Author({ author: findresponse._id, bookName: bookName })
             .save()
             .then(() => {
-              Awards.find()
+              Author.find()
                 .populate("author")
                 .then((response) => {
                   res.status(200).json({
                     response,
-                    message: "You give the award to " + findresponse.name,
+                    message:
+                      "You give the author certificate to " + findresponse.name,
                   });
                 })
                 .catch(() => {
@@ -42,8 +44,8 @@ const giveAwards = (req, res) => {
   }
 };
 
-const getAllAwards = (req, res) => {
-  Awards.find()
+const getAllAuthor = (req, res) => {
+  Author.find()
     .populate("author")
     .then((response) => {
       res.status(200).json(response);
@@ -53,8 +55,8 @@ const getAllAwards = (req, res) => {
     });
 };
 
-const getAwards = (req, res) => {
-  Awards.find({ author: req.user._id })
+const getMyAuthor = (req, res) => {
+  Author.find({ author: req.user._id })
     .populate("author")
     .then((response) => {
       res.status(200).json(response);
@@ -64,4 +66,4 @@ const getAwards = (req, res) => {
     });
 };
 
-module.exports = { giveAwards, getAwards, getAllAwards };
+module.exports = { giveAuthor, getAllAuthor, getMyAuthor };

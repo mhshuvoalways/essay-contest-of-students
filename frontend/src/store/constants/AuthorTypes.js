@@ -1,0 +1,8 @@
+export const GIVE_AUTHOR = "GIVE_AUTHOR";
+export const GIVE_AUTHOR_ERROR = "GIVE_AUTHOR_ERROR";
+
+export const GET_AUTHOR = "GET_AUTHOR";
+export const GET_AUTHOR_ERROR = "GET_AUTHOR_ERROR";
+
+export const GET_ALL_AUTHOR = "GET_ALL_AUTHOR";
+export const GET_ALL_AUTHOR_ERROR = "GET_ALL_AUTHOR_ERROR";
