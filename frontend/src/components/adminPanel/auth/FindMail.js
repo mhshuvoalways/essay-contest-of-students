@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { findMail } from "../../../store/actions/adminUserAction";
+import { findMailAdmin } from "../../../store/actions/adminUserAction";
 import { Link, useNavigate } from "react-router-dom";
 
 const FindEmail = () => {
@@ -14,7 +14,7 @@ const FindEmail = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(findMail({ email: state }, navigate));
+    dispatch(findMailAdmin({ email: state }, navigate));
   };
 
   return (

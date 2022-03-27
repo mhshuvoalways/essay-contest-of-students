@@ -13,6 +13,8 @@ const FindEmail = () => {
   };
 
   const onSubmitHandler = (e) => {
+    console.log('finduser');
+    
     e.preventDefault();
     dispatch(findMail({ email: state }, navigate));
   };

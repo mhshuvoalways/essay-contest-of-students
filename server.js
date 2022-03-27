@@ -12,7 +12,7 @@ const gradeRouter = require("./routers/gradeRouter");
 const paymentRouter = require("./routers/paymentRouter");
 const isPaySubmitRouter = require("./routers/isPaySubmitRouter");
 const awardRouter = require("./routers/awardRouter");
-
+  
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -32,5 +32,3 @@ app.get("/", (req, res) => {
 });
 
 db(app);
-
-console.log("first award".split(" ").forEach((el) => el));

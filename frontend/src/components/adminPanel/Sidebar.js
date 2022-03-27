@@ -105,7 +105,7 @@ function Sidebar({ children }) {
               <i class="fa-solid fa-pen"></i>
               <span>Articles</span>
             </NavLink>
-            {adminReducer.user.role === "admin" && (
+            {adminReducer.user && adminReducer.user.role === "admin" && (
               <>
                 <NavLink
                   to="/admin/awards"

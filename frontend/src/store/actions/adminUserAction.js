@@ -10,7 +10,7 @@ export const userRegister = (user, navigate) => (dispatch) => {
     .post("/adminuser/register", user)
     .then((response) => {
       dispatch({
-        type: Types.REGISTER_USER,
+        type: Types.REGISTER_ADMIN,
         payload: {
           user: response.data,
         },
@@ -21,7 +21,7 @@ export const userRegister = (user, navigate) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({
-        type: Types.REGISTER_USER_ERROR,
+        type: Types.REGISTER_ADMIN_ERROR,
         payload: {
           error: err.response.data,
         },
@@ -44,7 +44,7 @@ export const userLogin = (user, navigate, form) => (dispatch) => {
     .then((response) => {
       const decoded = jwt_decode(response.data.token);
       dispatch({
-        type: Types.LOGIN_USER,
+        type: Types.LOGIN_ADMIN,
         payload: {
           user: decoded,
         },
@@ -58,7 +58,7 @@ export const userLogin = (user, navigate, form) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({
-        type: Types.LOGIN_USER_ERROR,
+        type: Types.LOGIN_ADMIN_ERROR,
         payload: {
           error: err.response,
         },
@@ -75,33 +75,33 @@ export const activeAccount = (token, navigate) => (dispatch) => {
     .post("/adminuser/active", token)
     .then((response) => {
       dispatch({
-        type: Types.ACTIVE_ACCOUNT,
+        type: Types.ACTIVE_ACCOUNT_ADMIN,
         payload: response.data.message,
       });
       navigate("/admin/login");
     })
     .catch((err) => {
       dispatch({
-        type: Types.ACTIVE_ACCOUNT_ERROR,
+        type: Types.ACTIVE_ACCOUNT_ADMIN_ERROR,
         payload: err.response.data.message,
       });
       dispatch(alertAction(err.response.data.message));
     });
 };
 
-export const findMail = (email, navigate) => (dispatch) => {
+export const findMailAdmin = (email, navigate) => (dispatch) => {
   axios
     .post("/adminuser/findmail", email)
     .then(() => {
       dispatch({
-        type: Types.FIND_MAIL,
+        type: Types.FIND_MAIL_ADMIN,
         payload: true,
       });
       navigate("/admin/checkmsg");
     })
     .catch((err) => {
       dispatch({
-        type: Types.FIND_MAIL_ERROR,
+        type: Types.FIND_MAIL_ADMIN_ERROR,
         payload: false,
       });
       dispatch(alertAction(err.response.data.email));
@@ -116,7 +116,7 @@ export const recoverPass = (value, navigate) => (dispatch) => {
       .then((response) => {
         const decoded = jwt_decode(response.data.token);
         dispatch({
-          type: Types.RECOVER_PASS,
+          type: Types.RECOVER_PASS_ADMIN,
           payload: {
             user: decoded,
           },
@@ -128,7 +128,7 @@ export const recoverPass = (value, navigate) => (dispatch) => {
       })
       .catch((err) => {
         dispatch({
-          type: Types.RECOVER_PASS_ERROR,
+          type: Types.RECOVER_PASS_ADMIN_ERROR,
           payload: {
             error: err.response,
           },
@@ -148,7 +148,7 @@ export const adminIsAuthenticate = () => (dispatch) => {
     const dateNow = new Date();
     if (decoded.exp * 1000 < dateNow.getTime()) {
       dispatch({
-        type: Types.ISAUTHENTICATE,
+        type: Types.ISAUTHENTICATE_ADMIN,
         payload: {
           isAuthenticate: false,
         },
@@ -156,7 +156,7 @@ export const adminIsAuthenticate = () => (dispatch) => {
       localStorage.removeItem("adminToken");
     } else {
       dispatch({
-        type: Types.ISAUTHENTICATE,
+        type: Types.ISAUTHENTICATE_ADMIN,
         payload: {
           user: decoded,
           isAuthenticate: true,
@@ -165,7 +165,7 @@ export const adminIsAuthenticate = () => (dispatch) => {
     }
   } else {
     dispatch({
-      type: Types.ISAUTHENTICATE,
+      type: Types.ISAUTHENTICATE_ADMIN,
       payload: {
         isAuthenticate: false,
       },
@@ -240,7 +240,7 @@ export const freshData = () => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch({
-    type: Types.LOGOUT_USER,
+    type: Types.LOGOUT_ADMIN,
     payload: {
       isAuthenticate: false,
     },

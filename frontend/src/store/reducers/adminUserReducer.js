@@ -11,14 +11,14 @@ const init = {
 
 const userReudcer = (state = init, action) => {
   switch (action.type) {
-    case Types.REGISTER_USER: {
+    case Types.REGISTER_ADMIN: {
       return {
         ...state,
         user: action.payload.user,
         error: null,
       };
     }
-    case Types.REGISTER_USER_ERROR: {
+    case Types.REGISTER_ADMIN_ERROR: {
       return {
         ...state,
         isAuthenticate: false,
@@ -27,7 +27,7 @@ const userReudcer = (state = init, action) => {
       };
     }
 
-    case Types.LOGIN_USER: {
+    case Types.LOGIN_ADMIN: {
       return {
         ...state,
         isAuthenticate: Object.keys(action.payload.user).length > 0,
@@ -35,7 +35,7 @@ const userReudcer = (state = init, action) => {
         error: null,
       };
     }
-    case Types.LOGIN_USER_ERROR: {
+    case Types.LOGIN_ADMIN_ERROR: {
       return {
         ...state,
         isAuthenticate: false,
@@ -88,33 +88,33 @@ const userReudcer = (state = init, action) => {
       };
     }
 
-    case Types.ACTIVE_ACCOUNT: {
+    case Types.ACTIVE_ACCOUNT_ADMIN: {
       return {
         ...state,
         activeAccountMsg: action.payload,
       };
     }
-    case Types.ACTIVE_ACCOUNT_ERROR: {
+    case Types.ACTIVE_ACCOUNT_ADMIN_ERROR: {
       return {
         ...state,
         activeAccountMsg: action.payload,
       };
     }
 
-    case Types.FIND_MAIL: {
+    case Types.FIND_MAIL_ADMIN: {
       return {
         ...state,
         findMail: action.payload,
       };
     }
-    case Types.FIND_MAIL_ERROR: {
+    case Types.FIND_MAIL_ADMIN_ERROR: {
       return {
         ...state,
         findMail: action.payload,
       };
     }
 
-    case Types.RECOVER_PASS: {
+    case Types.RECOVER_PASS_ADMIN: {
       return {
         ...state,
         isAuthenticate: Object.keys(action.payload.user).length > 0,
@@ -122,7 +122,7 @@ const userReudcer = (state = init, action) => {
         error: null,
       };
     }
-    case Types.RECOVER_PASS_ERROR: {
+    case Types.RECOVER_PASS_ADMIN_ERROR: {
       return {
         ...state,
         isAuthenticate: false,
@@ -131,14 +131,14 @@ const userReudcer = (state = init, action) => {
       };
     }
 
-    case Types.ISAUTHENTICATE: {
+    case Types.ISAUTHENTICATE_ADMIN: {
       return {
         ...state,
         user: action.payload.user,
         isAuthenticate: action.payload.isAuthenticate,
       };
     }
-    case Types.LOGOUT_USER: {
+    case Types.LOGOUT_ADMIN: {
       return {
         isAuthenticate: action.payload.isAuthenticate,
         user: {},

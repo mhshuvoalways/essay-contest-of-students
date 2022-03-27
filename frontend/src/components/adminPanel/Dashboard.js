@@ -45,7 +45,7 @@ const Dashboard = () => {
       articles++;
     }
   });
-  console.log(adminUserReducer.allUser.length);
+
   return (
     <div className="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto mb-72">
       <div className="flex justify-between gap-3 flex-wrap">

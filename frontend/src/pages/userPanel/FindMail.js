@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "../../components/userPanel/Navigation";
-import FindMail from "../../components/adminPanel/auth/FindMail";
+import FindMail from "../../components/userPanel/auth/FindMail";
 
 const ActiveAccount = () => {
   return (

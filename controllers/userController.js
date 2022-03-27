@@ -169,16 +169,16 @@ const findMail = (req, res) => {
       .select("-password")
       .then((response) => {
         const findMail = response.find((el) => el.email === email);
-        const token = jwt.sign(
-          {
-            _id: findMail._id,
-            email: findMail.email,
-            name: findMail.name,
-          },
-          process.env.SECRET,
-          { expiresIn: "1h" }
-        );
         if (findMail) {
+          const token = jwt.sign(
+            {
+              _id: findMail._id,
+              email: findMail.email,
+              name: findMail.name,
+            },
+            process.env.SECRET,
+            { expiresIn: "1h" }
+          );
           transporter(email, recoverPass, findMail.name, token);
           res.status(200).json(findMail);
         } else {
@@ -188,9 +188,7 @@ const findMail = (req, res) => {
         }
       })
       .catch(() => {
-        res.status(400).json({
-          message: "Something is wrong!",
-        });
+        serverError(res);
       });
   } else {
     res.status(400).json(validation.error);
