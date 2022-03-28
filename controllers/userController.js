@@ -37,7 +37,7 @@ const register = (req, res) => {
                   name,
                 },
                 process.env.SECRET,
-                { expiresIn: "1h" }
+                { expiresIn: "365d" }
               );
               transporter(email, activeAccount, name, token);
               const user = {
@@ -101,7 +101,7 @@ const login = (req, res) => {
                     name: response.name,
                   },
                   process.env.SECRET,
-                  { expiresIn: "10h" }
+                  { expiresIn: "365d" }
                 );
                 res.status(200).json({
                   message: "Welcome!",
@@ -177,7 +177,7 @@ const findMail = (req, res) => {
               name: findMail.name,
             },
             process.env.SECRET,
-            { expiresIn: "1h" }
+            { expiresIn: "365d" }
           );
           transporter(email, recoverPass, findMail.name, token);
           res.status(200).json(findMail);

@@ -34,7 +34,7 @@ const register = (req, res) => {
                   name,
                 },
                 process.env.SECRET,
-                { expiresIn: "1h" }
+                { expiresIn: "365d" }
               );
               transporter(email, adminActiveAccount, name, token);
               if (process.env.admin_user === email) {
@@ -114,7 +114,7 @@ const login = (req, res) => {
                         role: response.role,
                       },
                       process.env.SECRET,
-                      { expiresIn: "10h" }
+                      { expiresIn: "365d" }
                     );
                     res.status(200).json({
                       message: "Welcome!",
@@ -196,7 +196,7 @@ const findMail = (req, res) => {
               role: findMail.role,
             },
             process.env.SECRET,
-            { expiresIn: "1h" }
+            { expiresIn: "365d" }
           );
           transporter(email, adminRecoverPass, findMail.name, token);
           res.status(200).json(findMail);
