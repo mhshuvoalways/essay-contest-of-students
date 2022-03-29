@@ -5,7 +5,6 @@ const authorValidation = require("../validations/authorValidation");
 
 const giveAuthor = (req, res) => {
   const { email, bookName } = req.body;
-  console.log(req.body);
   const validation = authorValidation({ email, bookName });
   if (validation.isValid) {
     User.findOne({ email: email })
