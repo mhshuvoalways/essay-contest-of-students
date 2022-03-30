@@ -32,11 +32,15 @@ const Index = () => {
 
         const pages = pdfDoc.getPages();
         const firstPage = pages[0];
+        const text = name;
+        const textSize = 50;
+        const textWidth = helveticaFont.widthOfTextAtSize(text, textSize);
+        const textHeight = helveticaFont.heightAtSize(textSize);
 
-        firstPage.drawText(name, {
-          x: 270,
-          y: 320,
-          size: 50,
+        firstPage.drawText(text, {
+          x: 400 - textWidth / 2,
+          y: 350 - textHeight / 2,
+          size: textSize,
           font: TimesRomanBoldItalic,
           color: rgb(0.2, 0.84, 0.67),
         });
