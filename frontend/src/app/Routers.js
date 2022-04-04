@@ -45,6 +45,58 @@ const Routers = () => {
       <Alert />
       {adminReducer.user && adminReducer.user.role === "judge" ? (
         <Routes>
+          {/* User Panel */}
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="active/:token" element={<ActiveAccount />}></Route>
+          <Route path="findmail" element={<FindMail />}></Route>
+          <Route path="checkmsg" element={<CheckMsg />}></Route>
+          <Route
+            path="recoverpassword/:token"
+            element={<RecoverPassword />}
+          ></Route>
+          <Route
+            path=""
+            element={
+              <RequireAuth>
+                <DashboardUser />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="submitarticle"
+            element={
+              <RequireAuth>
+                <SubmitArticle />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="result"
+            element={
+              <RequireAuth>
+                <Result />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="award"
+            element={
+              <RequireAuth>
+                <AwardsUser />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="author"
+            element={
+              <RequireAuth>
+                <AuthorUser />
+              </RequireAuth>
+            }
+          ></Route>
+
+          {/* Admin panel */}
           <Route path="admin/register" element={<RegisterAdmin />} />
           <Route path="admin/login" element={<LoginAdmin />} />
           <Route path="admin/active/:token" element={<ActiveAccountAdmin />} />
