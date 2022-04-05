@@ -47,7 +47,7 @@ const Dashboard = () => {
   return (
     <div className="max-w-7xl px-4 sm:px-6 lg:px-8 m-auto">
       <p className="text-3xl my-10 text-center">
-        Hi {userReducer.user.name}, Your Achivements
+        Hi {userReducer.user && userReducer.user.name}, Your Achivements
       </p>
       <div className="flex justify-between gap-4 flex-wrap">
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">

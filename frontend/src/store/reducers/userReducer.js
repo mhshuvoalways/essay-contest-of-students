@@ -6,6 +6,7 @@ const init = {
   error: null,
   findMail: false,
   activeAccountMsg: "",
+  getAllUser: [],
 };
 
 const userReudcer = (state = init, action) => {
@@ -82,6 +83,19 @@ const userReudcer = (state = init, action) => {
       };
     }
 
+    case Types.GET_ALL_USER: {
+      return {
+        ...state,
+        getAllUser: action.payload,
+      };
+    }
+    case Types.GET_ALL_USER_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+
     case Types.RECOVER_PASS: {
       return {
         ...state,
@@ -121,6 +135,8 @@ const userReudcer = (state = init, action) => {
         user: {},
         error: null,
         findMail: false,
+        activeAccountMsg: "",
+        getAllUser: [],
       };
     }
     default:

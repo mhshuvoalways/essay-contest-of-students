@@ -191,6 +191,24 @@ export const getMe = () => (dispatch) => {
     });
 };
 
+export const getUsers = () => (dispatch) => {
+  axios
+    .get("/user/getalluser")
+    .then((response) => {
+      dispatch({
+        type: Types.GET_ALL_USER,
+        payload: response.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: Types.GET_ALL_USER_ERROR,
+        payload: err.response.data,
+      });
+      dispatch(alertAction(err.response.data.message));
+    });
+};
+
 export const freshData = () => (dispatch) => {
   dispatch({
     type: Types.FRESH_USER,

@@ -16,6 +16,9 @@ export const FIND_MAIL_ERROR = "FIND_MAIL_ERROR";
 export const GETME = "GETME";
 export const GETME_ERROR = "GETME_ERROR";
 
+export const GET_ALL_USER = "GET_ALL_USER";
+export const GET_ALL_USER_ERROR = "GET_ALL_USER_ERROR";
+
 export const RECOVER_PASS = "RECOVER_PASS";
 export const RECOVER_PASS_ERROR = "RECOVER_PASS_ERROR";
 

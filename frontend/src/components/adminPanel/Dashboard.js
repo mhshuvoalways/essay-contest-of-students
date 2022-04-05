@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUser } from "../../store/actions/adminUserAction";
+import { getUsers } from "../../store/actions/userAction";
 import { getArticle } from "../../store/actions/articleAction";
 import { getAllPayments } from "../../store/actions/paymentAction";
 import { getQuarterAnnounce } from "../../store/actions/quarterlyAnnounceAction";
 
 const Dashboard = () => {
   const adminUserReducer = useSelector((store) => store.adminUserReducer);
+  const userReducer = useSelector((store) => store.userReducer);
   const articleReducer = useSelector((store) => store.articleReducer);
   const paymentReducer = useSelector((store) => store.paymentReducer);
   const quarterlyAnnounceReducer = useSelector(
@@ -17,6 +19,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getAllUser());
+    dispatch(getUsers());
     dispatch(getArticle());
     dispatch(getAllPayments());
     dispatch(getQuarterAnnounce());
@@ -68,9 +71,7 @@ const Dashboard = () => {
             <p className="text-2xl">USERS</p>
           </div>
           <p className="text-2xl text-center">
-            {adminUserReducer.allUser.length
-              ? adminUserReducer.allUser.length
-              : 0}
+            {userReducer.getAllUser.length ? userReducer.getAllUser.length : 0}
           </p>
         </div>
         <div className="shadow-lg bg-gray-50 w-72 py-10 border">

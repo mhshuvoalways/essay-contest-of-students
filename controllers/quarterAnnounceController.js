@@ -16,6 +16,7 @@ const addQuarterAnnounce = (req, res) => {
           quarterly,
           year,
           toggleStartStop: toggle,
+          isAnnounce: false,
         };
         if (response.length) {
           QuarterAnnounce.findOneAndUpdate({ _id: response[0]._id }, obj, {
