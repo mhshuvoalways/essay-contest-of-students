@@ -118,7 +118,8 @@ const login = (req, res) => {
             });
           } else {
             res.status(400).json({
-              message: "Please active your account and try again",
+              message:
+                "Please check your registered mail and activate your account!",
             });
           }
         } else {
