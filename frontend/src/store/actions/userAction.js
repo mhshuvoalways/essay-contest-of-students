@@ -98,12 +98,14 @@ export const findMail = (email, navigate) => (dispatch) => {
         payload: true,
       });
       navigate("/checkmsg");
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
         type: Types.FIND_MAIL_ERROR,
         payload: false,
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.email));
       dispatch(alertAction(err.response.data.message));
     });
@@ -125,6 +127,7 @@ export const recoverPass = (value, navigate) => (dispatch) => {
         localStorage.setItem("token", response.data.token);
         dispatch(alertAction(response.data.message));
         navigate("/");
+        dispatch(enableBtn(true));
       })
       .catch((err) => {
         dispatch({
@@ -133,6 +136,7 @@ export const recoverPass = (value, navigate) => (dispatch) => {
             error: err.response,
           },
         });
+        dispatch(enableBtn(true));
         dispatch(alertAction(err.response.data.password));
         dispatch(alertAction(err.response.data.message));
       });

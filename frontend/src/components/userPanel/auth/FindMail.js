@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { findMail } from "../../../store/actions/userAction";
+import enableBtn from "../../../store/actions/enableBtnAction";
 import { Link, useNavigate } from "react-router-dom";
 
 const FindEmail = () => {
@@ -13,10 +14,9 @@ const FindEmail = () => {
   };
 
   const onSubmitHandler = (e) => {
-    console.log('finduser');
-    
     e.preventDefault();
     dispatch(findMail({ email: state }, navigate));
+    dispatch(enableBtn(false));
   };
 
   return (

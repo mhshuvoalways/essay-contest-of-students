@@ -98,12 +98,14 @@ export const findMailAdmin = (email, navigate) => (dispatch) => {
         payload: true,
       });
       navigate("/admin/checkmsg");
+      dispatch(enableBtn(true));
     })
     .catch((err) => {
       dispatch({
         type: Types.FIND_MAIL_ADMIN_ERROR,
         payload: false,
       });
+      dispatch(enableBtn(true));
       dispatch(alertAction(err.response.data.email));
       dispatch(alertAction(err.response.data.message));
     });
@@ -125,6 +127,7 @@ export const recoverPass = (value, navigate) => (dispatch) => {
         localStorage.setItem("adminToken", response.data.token);
         dispatch(alertAction(response.data.message));
         navigate("/admin");
+        dispatch(enableBtn(true));
       })
       .catch((err) => {
         dispatch({
@@ -135,6 +138,7 @@ export const recoverPass = (value, navigate) => (dispatch) => {
         });
         dispatch(alertAction(err.response.data.password));
         dispatch(alertAction(err.response.data.message));
+        dispatch(enableBtn(true));
       });
   } else {
     dispatch(alertAction("New password and confirm password don't match"));

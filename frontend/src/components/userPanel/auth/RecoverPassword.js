@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { recoverPass } from "../../../store/actions/userAction";
 import { useNavigate, useParams } from "react-router-dom";
+import enableBtn from "../../../store/actions/enableBtnAction";
 
 const RecoverPassword = () => {
   const params = useParams();
   const navigate = useNavigate();
+
+  const enableBtnReducer = useSelector((store) => store.enableBtnReducer);
 
   const [state, setState] = useState({
     password: "",
@@ -24,6 +27,7 @@ const RecoverPassword = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(enableBtn(false));
     dispatch(recoverPass(state, navigate));
   };
 
@@ -53,9 +57,15 @@ const RecoverPassword = () => {
               value={state.confirmPassword}
             />
           </label>
-          <button className="bg-purple-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
-            Submit
-          </button>
+          {enableBtnReducer ? (
+            <button className="bg-purple-600 text-white py-2 mt-5 w-full hover:bg-gray-900">
+              Submit
+            </button>
+          ) : (
+            <button className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900">
+              Submit
+            </button>
+          )}
         </div>
       </form>
     </div>
