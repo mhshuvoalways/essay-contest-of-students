@@ -62,7 +62,10 @@ const RecoverPassword = () => {
               Submit
             </button>
           ) : (
-            <button className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900">
+            <button
+              className="bg-gray-600 opacity-50 cursor-not-allowed text-white py-2 mt-5 w-full hover:bg-gray-900"
+              type="button"
+            >
               Submit
             </button>
           )}

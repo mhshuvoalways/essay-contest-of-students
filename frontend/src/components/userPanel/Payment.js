@@ -5,7 +5,7 @@ import { ispaysubmitGet } from "../../store/actions/isPaySubmitAction";
 import alertAction from "../../store/actions/alertAction";
 
 const Payment = () => {
-  const amount = 10;
+  const amount = process.env.AMOUNT;
   const dispatch = useDispatch();
   const userReducer = useSelector((store) => store.userReducer);
   const loadRazorpay = () => {
