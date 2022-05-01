@@ -30,12 +30,28 @@ const Footer = () => {
             Privacy Policy
           </a>
           <a
-            href="https://monomousumi.com/team"
+            href="https://alekhya.org"
             className="cursor-pointer text-gray-50"
             target="_blank"
             rel="noreferrer"
           >
-            Terms of Sale
+            Books
+          </a>
+          <a
+            href="https://weavermag.com"
+            className="cursor-pointer text-gray-50"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Magazine
+          </a>
+          <a
+            href="https://monomousumi.com/media"
+            className="cursor-pointer text-gray-50"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Media
           </a>
           <div>
             <p className="text-xl text-gray-50 border-b-gray-50 border-b-2 mb-5">
