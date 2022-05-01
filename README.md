@@ -1,17 +1,14 @@
-# Mern-Stack-Ecommerce-App
+# Mern-Stack-Contest-App
 
-This is a project template for mern-facebook-lite. It lives at https://ecommerce-app-mhs.netlify.app
+This is a project template for mern-facebook-lite. It lives at https://www.monomousumicontest.com
 
 ```bash
 Feature:
 • Login/Logout with authentication
 • Message send to email for active accout using SMTP server
 • SMS send to phone for welcome message using twilio
-• Multi verndor
-• Store create 
-• Product add, delete, update
-• Search product
-• Review product
+• Article Submit
+• Payment method
 
 Technology:
 • HTML

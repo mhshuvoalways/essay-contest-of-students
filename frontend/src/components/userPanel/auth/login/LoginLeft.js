@@ -1,5 +1,5 @@
 import React from "react";
-import LeftImg from "../../../../assets/images/loginleft.png";
+import LeftImg from "../../../../assets/images/loginleft.jpeg";
 
 const LoginLeft = () => {
   return (
