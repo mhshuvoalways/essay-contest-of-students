@@ -106,11 +106,7 @@ const Dashboard = () => {
           isPaySubmitReducer.ispaysubmitObj &&
           isPaySubmitReducer.ispaysubmitObj.isPayment ? (
             <p className="border p-4">
-              You can submit article{" "}
-              {3 -
-                (isPaySubmitReducer.ispaysubmitObj &&
-                  isPaySubmitReducer.ispaysubmitObj.submissionCount)}{" "}
-              times by paying one time
+              You can submit article 3 times by paying one time
             </p>
           ) : (
             <p className="border p-4">

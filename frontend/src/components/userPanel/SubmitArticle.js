@@ -79,8 +79,8 @@ const SubmitArticle = () => {
         isPaySubmitReducer.ispaysubmitObj.isPayment && (
           <p className="border p-4">
             You can submit article{" "}
-            {3 - isPaySubmitReducer.ispaysubmitObj.submissionCount} times by
-            paying one time
+            {3 - isPaySubmitReducer.ispaysubmitObj.submissionCount} times out of
+            3 times
           </p>
         )
       ) : (

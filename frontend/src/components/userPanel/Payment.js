@@ -20,8 +20,8 @@ const Payment = () => {
               key: rezkey,
               amount: amount.toString(),
               currency: currency,
-              name: "Donate to grow us",
-              description: "You can submit article 3 times to pay one time",
+              name: "Register for the contest",
+              description: "You can submit article 3 times by paying one time",
               order_id: order_id,
 
               handler: function (response) {
