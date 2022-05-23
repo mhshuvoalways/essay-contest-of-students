@@ -15,7 +15,7 @@ const Awards = ({ downloadHandler }) => {
       <div className="shadow-sm bg-gray-50 border overflow-x-auto">
         <table className="w-full ">
           <tr>
-            <th className="text-left border px-2 py-3">Award Name</th>
+            <th className="text-left border px-2 py-3">Author Certificate Name</th>
             <th className="text-left border px-2 py-3">Action</th>
           </tr>
           {authorReducer.author.reverse().map((el) => (
