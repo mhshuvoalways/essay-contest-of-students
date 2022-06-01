@@ -4,7 +4,7 @@ import Register from "./Register";
 
 const index = () => {
   return (
-    <div className="flex gap-10 mt-12 max-w-7xl m-auto flex-wrap justify-center">
+    <div className="flex gap-2 mt-12 max-w-7xl m-auto flex-wrap justify-center">
       <LeftImg />
       <Register />
     </div>
