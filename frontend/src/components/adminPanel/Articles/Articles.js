@@ -33,8 +33,8 @@ const Articles = ({ modalHandler, search, language }) => {
       <table id="table-to-xls" className="w-full">
         <tr>
           <th className="text-left border px-2 py-3 ">Name</th>
-          <th className="text-left border px-2 py-3">Email</th>
-          <th className="text-left border px-2 py-3">Mobile</th>
+          <th className="text-left border px-2 py-3">Email (Username)</th>
+          {/* <th className="text-left border px-2 py-3">Mobile</th> */}
           <th className="text-left border px-2 py-3">Language</th>
           <th className="text-left border px-2 py-3">Type of Article</th>
           <th className="text-left border px-2 py-3">Date</th>
@@ -53,8 +53,10 @@ const Articles = ({ modalHandler, search, language }) => {
         {temp.reverse().map((el) => (
           <tr key={el._id}>
             <td className="text-left border p-2">{el.author.name}</td>
-            <td className="text-left border p-2">{el.author.email}</td>
-            <td className="text-left border p-2">{el.author.phone}</td>
+            <td className="text-left border p-2">
+              {el.author.email.substring(0, el.author.email.lastIndexOf("@"))}
+            </td>
+            {/* <td className="text-left border p-2">{el.author.phone}</td> */}
             <td className="text-left border p-2">{el.language}</td>
             <td className="text-left border p-2">{el.typeofArticle}</td>
             <td className="text-left border p-2">
