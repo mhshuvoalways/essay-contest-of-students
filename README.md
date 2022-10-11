@@ -1,6 +1,6 @@
 # Mern-Stack-Contest-App
 
-This is a project template for mern-facebook-lite. It lives at https://www.monomousumicontest.com
+This is a mern stack web application for student's essay contest. It lives at https://www.monomousumicontest.com
 
 ```bash
 Feature:
